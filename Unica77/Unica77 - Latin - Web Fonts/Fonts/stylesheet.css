@@ -1,0 +1,310 @@
+/*
+ *
+ * INSTRUCTIONS
+ *
+ * Copy the Legal Disclaimer and the @font-faces statements to your regular CSS file.
+ * The font file(s) should be placed relative to the regular CSS file.
+ *
+ */
+
+/*
+ * Legal Disclaimer for App licence
+ *
+ * Licence to use fonts in native, web, or hybrid apps on mobile or stationary devices, for example personal computers, smart phones, entertainment systems, game consoles, medical instruments, etc.
+ *
+ * Should the license download limit be exceeded the license holder will be required to contact Lineto.com for an upgrade.
+ * 
+ * It is strictly prohibited to rename the font and to download or use these fonts in any other media. 
+ * 
+ * These Web fonts are licensed exclusively for the use on the following App(s):
+ *
+ * Arb (Total Downloads: <10k)
+ *
+ */
+
+/* complete */
+
+@font-face {
+  font-family: "Unica77LLWeb-Black";
+  src: url("Unica77LLWeb-Black.woff") format("woff");
+}
+
+@font-face {
+  font-family: "Unica77LLWeb-Black";
+  src: url("Unica77LLWeb-Black.woff2") format("woff2");
+}
+
+@font-face {
+  font-family: "Unica77LLWeb-Bold";
+  src: url("Unica77LLWeb-Bold.woff") format("woff");
+}
+
+@font-face {
+  font-family: "Unica77LLWeb-Bold";
+  src: url("Unica77LLWeb-Bold.woff2") format("woff2");
+}
+
+@font-face {
+  font-family: "Unica77LLWeb-Regular";
+  src: url("Unica77LLWeb-Regular.woff") format("woff");
+}
+
+@font-face {
+  font-family: "Unica77LLWeb-Regular";
+  src: url("Unica77LLWeb-Regular.woff2") format("woff2");
+}
+
+@font-face {
+  font-family: "Unica77LLWeb-Italic";
+  src: url("Unica77LLWeb-Italic.woff") format("woff");
+}
+
+@font-face {
+  font-family: "Unica77LLWeb-Italic";
+  src: url("Unica77LLWeb-Italic.woff2") format("woff2");
+}
+
+@font-face {
+  font-family: "Unica77LLWeb-Thin";
+  src: url("Unica77LLWeb-Thin.woff") format("woff");
+}
+
+@font-face {
+  font-family: "Unica77LLWeb-Thin";
+  src: url("Unica77LLWeb-Thin.woff2") format("woff2");
+}
+
+@font-face {
+  font-family: "Unica77LLWeb-Medium";
+  src: url("Unica77LLWeb-Medium.woff") format("woff");
+}
+
+@font-face {
+  font-family: "Unica77LLWeb-Medium";
+  src: url("Unica77LLWeb-Medium.woff2") format("woff2");
+}
+
+@font-face {
+  font-family: "Unica77LLWeb-LightItalic";
+  src: url("Unica77LLWeb-LightItalic.woff") format("woff");
+}
+
+@font-face {
+  font-family: "Unica77LLWeb-LightItalic";
+  src: url("Unica77LLWeb-LightItalic.woff2") format("woff2");
+}
+
+@font-face {
+  font-family: "Unica77LLWeb-BlackItalic";
+  src: url("Unica77LLWeb-BlackItalic.woff") format("woff");
+}
+
+@font-face {
+  font-family: "Unica77LLWeb-BlackItalic";
+  src: url("Unica77LLWeb-BlackItalic.woff2") format("woff2");
+}
+
+@font-face {
+  font-family: "Unica77LLWeb-MediumItalic";
+  src: url("Unica77LLWeb-MediumItalic.woff") format("woff");
+}
+
+@font-face {
+  font-family: "Unica77LLWeb-MediumItalic";
+  src: url("Unica77LLWeb-MediumItalic.woff2") format("woff2");
+}
+
+@font-face {
+  font-family: "Unica77LLWeb-ExtraBlackItalic";
+  src: url("Unica77LLWeb-ExtraBlackItalic.woff") format("woff");
+}
+
+@font-face {
+  font-family: "Unica77LLWeb-ExtraBlackItalic";
+  src: url("Unica77LLWeb-ExtraBlackItalic.woff2") format("woff2");
+}
+
+@font-face {
+  font-family: "Unica77LLWeb-Light";
+  src: url("Unica77LLWeb-Light.woff") format("woff");
+}
+
+@font-face {
+  font-family: "Unica77LLWeb-Light";
+  src: url("Unica77LLWeb-Light.woff2") format("woff2");
+}
+
+@font-face {
+  font-family: "Unica77LLWeb-ThinItalic";
+  src: url("Unica77LLWeb-ThinItalic.woff") format("woff");
+}
+
+@font-face {
+  font-family: "Unica77LLWeb-ThinItalic";
+  src: url("Unica77LLWeb-ThinItalic.woff2") format("woff2");
+}
+
+@font-face {
+  font-family: "Unica77LLWeb-ExtraBlack";
+  src: url("Unica77LLWeb-ExtraBlack.woff") format("woff");
+}
+
+@font-face {
+  font-family: "Unica77LLWeb-ExtraBlack";
+  src: url("Unica77LLWeb-ExtraBlack.woff2") format("woff2");
+}
+
+@font-face {
+  font-family: "Unica77LLWeb-BoldItalic";
+  src: url("Unica77LLWeb-BoldItalic.woff") format("woff");
+}
+
+@font-face {
+  font-family: "Unica77LLWeb-BoldItalic";
+  src: url("Unica77LLWeb-BoldItalic.woff2") format("woff2");
+}
+
+
+/* subset */
+
+@font-face {
+  font-family: "Unica77LLSub-Black";
+  src: url("Unica77LLSub-Black.woff") format("woff");
+}
+
+@font-face {
+  font-family: "Unica77LLSub-Black";
+  src: url("Unica77LLSub-Black.woff2") format("woff2");
+}
+
+@font-face {
+  font-family: "Unica77LLSub-Bold";
+  src: url("Unica77LLSub-Bold.woff") format("woff");
+}
+
+@font-face {
+  font-family: "Unica77LLSub-Bold";
+  src: url("Unica77LLSub-Bold.woff2") format("woff2");
+}
+
+@font-face {
+  font-family: "Unica77LLSub-Regular";
+  src: url("Unica77LLSub-Regular.woff") format("woff");
+}
+
+@font-face {
+  font-family: "Unica77LLSub-Regular";
+  src: url("Unica77LLSub-Regular.woff2") format("woff2");
+}
+
+@font-face {
+  font-family: "Unica77LLSub-Italic";
+  src: url("Unica77LLSub-Italic.woff") format("woff");
+}
+
+@font-face {
+  font-family: "Unica77LLSub-Italic";
+  src: url("Unica77LLSub-Italic.woff2") format("woff2");
+}
+
+@font-face {
+  font-family: "Unica77LLSub-Thin";
+  src: url("Unica77LLSub-Thin.woff") format("woff");
+}
+
+@font-face {
+  font-family: "Unica77LLSub-Thin";
+  src: url("Unica77LLSub-Thin.woff2") format("woff2");
+}
+
+@font-face {
+  font-family: "Unica77LLSub-Medium";
+  src: url("Unica77LLSub-Medium.woff") format("woff");
+}
+
+@font-face {
+  font-family: "Unica77LLSub-Medium";
+  src: url("Unica77LLSub-Medium.woff2") format("woff2");
+}
+
+@font-face {
+  font-family: "Unica77LLSub-LightItalic";
+  src: url("Unica77LLSub-LightItalic.woff") format("woff");
+}
+
+@font-face {
+  font-family: "Unica77LLSub-LightItalic";
+  src: url("Unica77LLSub-LightItalic.woff2") format("woff2");
+}
+
+@font-face {
+  font-family: "Unica77LLSub-BlackItalic";
+  src: url("Unica77LLSub-BlackItalic.woff") format("woff");
+}
+
+@font-face {
+  font-family: "Unica77LLSub-BlackItalic";
+  src: url("Unica77LLSub-BlackItalic.woff2") format("woff2");
+}
+
+@font-face {
+  font-family: "Unica77LLSub-MediumItalic";
+  src: url("Unica77LLSub-MediumItalic.woff") format("woff");
+}
+
+@font-face {
+  font-family: "Unica77LLSub-MediumItalic";
+  src: url("Unica77LLSub-MediumItalic.woff2") format("woff2");
+}
+
+@font-face {
+  font-family: "Unica77LLSub-ExtraBlackItalic";
+  src: url("Unica77LLSub-ExtraBlackItalic.woff") format("woff");
+}
+
+@font-face {
+  font-family: "Unica77LLSub-ExtraBlackItalic";
+  src: url("Unica77LLSub-ExtraBlackItalic.woff2") format("woff2");
+}
+
+@font-face {
+  font-family: "Unica77LLSub-Light";
+  src: url("Unica77LLSub-Light.woff") format("woff");
+}
+
+@font-face {
+  font-family: "Unica77LLSub-Light";
+  src: url("Unica77LLSub-Light.woff2") format("woff2");
+}
+
+@font-face {
+  font-family: "Unica77LLSub-ThinItalic";
+  src: url("Unica77LLSub-ThinItalic.woff") format("woff");
+}
+
+@font-face {
+  font-family: "Unica77LLSub-ThinItalic";
+  src: url("Unica77LLSub-ThinItalic.woff2") format("woff2");
+}
+
+@font-face {
+  font-family: "Unica77LLSub-ExtraBlack";
+  src: url("Unica77LLSub-ExtraBlack.woff") format("woff");
+}
+
+@font-face {
+  font-family: "Unica77LLSub-ExtraBlack";
+  src: url("Unica77LLSub-ExtraBlack.woff2") format("woff2");
+}
+
+@font-face {
+  font-family: "Unica77LLSub-BoldItalic";
+  src: url("Unica77LLSub-BoldItalic.woff") format("woff");
+}
+
+@font-face {
+  font-family: "Unica77LLSub-BoldItalic";
+  src: url("Unica77LLSub-BoldItalic.woff2") format("woff2");
+}
+
+
