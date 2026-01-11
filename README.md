@@ -1,7 +1,5 @@
 
-  # Community Hub Proposal
-
-  This is a code bundle for Community Hub Proposal. The original project is available at https://www.figma.com/design/l1ZSo9Ht80n8EZP6Yhx6Lw/Community-Hub-Proposal.
+  # Community StylusUp Hub Proposal
 
   ## Running the code
 
