@@ -91,7 +91,39 @@ export function WhatsPossible() {
           {useCases.map((useCase, index) => (
             <div
               key={index}
-              className="bg-white border border-gray-200 rounded-xl p-6 hover:border-[#5F4DED] hover:shadow-lg transition-all group"
+              className={`border border-gray-200 rounded-xl p-6 hover:border-[#5F4DED] hover:shadow-lg transition-all group relative overflow-hidden ${
+                index === 0 || index === 1 || index === 2 ? '' : 'bg-white'
+              }`}
+              style={
+                index === 0
+                  ? {
+                      backgroundImage: 'url(/images/RocketBG.svg)',
+                      backgroundSize: 'cover',
+                      backgroundPosition: 'center',
+                      backgroundRepeat: 'no-repeat',
+                      left: '-30px',
+                      position: 'relative',
+                    }
+                  : index === 1
+                  ? {
+                      backgroundImage: 'url(/images/BlockBG.svg)',
+                      backgroundSize: 'cover',
+                      backgroundPosition: 'center',
+                      backgroundRepeat: 'no-repeat',
+                      left: '-30px',
+                      position: 'relative',
+                    }
+                  : index === 2
+                  ? {
+                      backgroundImage: 'url(/images/LockBG.svg)',
+                      backgroundSize: 'cover',
+                      backgroundPosition: 'center',
+                      backgroundRepeat: 'no-repeat',
+                      left: '-30px',
+                      position: 'relative',
+                    }
+                  : {}
+              }
             >
               {/* Icon and title */}
               <div className="flex items-start gap-4 mb-4">
