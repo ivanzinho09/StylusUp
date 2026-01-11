@@ -21,8 +21,7 @@ const useCases = [
       { name: 'long.so', url: 'https://github.com/longtail-finance/long.so' },
       { name: '9lives.so', url: 'https://9lives.so' },
       { name: 'stylus-sdk', url: 'https://github.com/OffchainLabs/stylus-sdk-rs' },
-      { name: 'uniswap-v4-hooks', url: '#' },
-      { name: 'lending-protocol', url: '#' },
+      { name: 'openbook-v2', url: 'https://github.com/openbook-dex/openbook-v2' },
     ],
   },
   {
@@ -54,9 +53,9 @@ const useCases = [
     description: 'Build reliable cross-chain infrastructure and oracle networks with performance and safety guarantees.',
     packages: [
       { name: 'redstone-oracles', url: 'https://redstone.finance' },
-      { name: 'bridge-sdk', url: '#' },
-      { name: 'ccip-integration', url: '#' },
-      { name: 'layerzero-sdk', url: '#' },
+      { name: 'chainlink', url: 'https://docs.chain.link/arbitrum' },
+      { name: 'layerzero', url: 'https://layerzero.network' },
+      { name: 'wormhole', url: 'https://wormhole.com' },
     ],
   },
   {
@@ -64,10 +63,9 @@ const useCases = [
     title: 'Gaming & NFTs',
     description: 'Create on-chain games and NFT systems with complex logic that would be too expensive in Solidity.',
     packages: [
-      { name: 'game-engine-rs', url: '#' },
-      { name: 'erc721-optimized', url: '#' },
-      { name: 'procedural-gen', url: '#' },
-      { name: 'physics-engine', url: '#' },
+      { name: 'stylus-by-example', url: 'https://github.com/OffchainLabs/stylus-by-example' },
+      { name: 'erc721', url: 'https://docs.openzeppelin.com/contracts/4.x/erc721' },
+      { name: 'awesome-stylus', url: 'https://github.com/OffchainLabs/awesome-stylus' },
     ],
   },
 ];
@@ -91,21 +89,20 @@ export function WhatsPossible() {
           {useCases.map((useCase, index) => (
             <div
               key={index}
-              className={`border border-gray-200 rounded-xl p-6 hover:border-[#5F4DED] hover:shadow-lg transition-all group relative overflow-hidden ${
-                index === 0 || index === 1 || index === 2 ? '' : 'bg-white'
-              }`}
+              className={`border border-gray-200 rounded-xl p-6 hover:border-[#5F4DED] hover:shadow-lg transition-all group relative overflow-hidden ${index === 0 || index === 1 || index === 2 ? '' : 'bg-white'
+                }`}
               style={
                 index === 0
                   ? {
-                      backgroundImage: 'url(/images/RocketBG.svg)',
-                      backgroundSize: 'cover',
-                      backgroundPosition: 'center',
-                      backgroundRepeat: 'no-repeat',
-                      left: '-30px',
-                      position: 'relative',
-                    }
+                    backgroundImage: 'url(/images/RocketBG.svg)',
+                    backgroundSize: 'cover',
+                    backgroundPosition: 'center',
+                    backgroundRepeat: 'no-repeat',
+                    left: '-30px',
+                    position: 'relative',
+                  }
                   : index === 1
-                  ? {
+                    ? {
                       backgroundImage: 'url(/images/BlockBG.svg)',
                       backgroundSize: 'cover',
                       backgroundPosition: 'center',
@@ -113,16 +110,16 @@ export function WhatsPossible() {
                       left: '-30px',
                       position: 'relative',
                     }
-                  : index === 2
-                  ? {
-                      backgroundImage: 'url(/images/LockBG.svg)',
-                      backgroundSize: 'cover',
-                      backgroundPosition: 'center',
-                      backgroundRepeat: 'no-repeat',
-                      left: '-30px',
-                      position: 'relative',
-                    }
-                  : {}
+                    : index === 2
+                      ? {
+                        backgroundImage: 'url(/images/LockBG.svg)',
+                        backgroundSize: 'cover',
+                        backgroundPosition: 'center',
+                        backgroundRepeat: 'no-repeat',
+                        left: '-30px',
+                        position: 'relative',
+                      }
+                      : {}
               }
             >
               {/* Icon and title */}
@@ -167,7 +164,9 @@ export function WhatsPossible() {
 
               {/* Learn more link */}
               <a
-                href="#"
+                href="https://docs.arbitrum.io/stylus/stylus-gentle-introduction"
+                target="_blank"
+                rel="noopener noreferrer"
                 className="inline-flex items-center gap-2 text-sm text-gray-600 hover:text-[#FF1F8F] transition-colors mt-4 group-hover:gap-3"
               >
                 Learn More

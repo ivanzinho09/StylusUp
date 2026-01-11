@@ -1,6 +1,7 @@
 import { resourceCategories } from '../data/resources';
 import { CategoryCard } from './CategoryCard';
 import { WhatsPossible } from './WhatssPossible';
+import { CodeEditor } from './CodeEditor';
 
 import { QuickStart } from './QuickStart';
 import { BookOpen, Code, Rocket, Users } from 'lucide-react';
@@ -36,6 +37,15 @@ export function ResourceGrid() {
     <div className="bg-white">
       {/* Quick Start Section */}
 
+      {/* Try Stylus Code Section */}
+      <section className="py-20 bg-white">
+        <div className="max-w-7xl mx-auto px-6 lg:px-8">
+          <div className="text-center mb-12">
+            <h2 className="text-4xl text-gray-900 mb-4">Try Stylus</h2>
+          </div>
+          <CodeEditor />
+        </div>
+      </section>
 
       {/* What's Possible Section */}
       <WhatsPossible />
@@ -78,62 +88,7 @@ export function ResourceGrid() {
         </section>
       ))}
 
-      {/* CTA Section */}
-      <section id="community" className="py-20 relative overflow-hidden bg-gradient-to-br from-[#5F4DED] via-[#7B68EE] to-[#5F4DED]">
-        <div 
-          className="absolute inset-0 bg-cover bg-center bg-no-repeat"
-          style={{
-            backgroundImage: 'url(/images/StylusUpCommunityCard.svg)',
-          }}
-        />
 
-        <div className="relative max-w-4xl mx-auto px-6 lg:px-8 text-center text-white">
-          <Users className="w-12 h-12 mx-auto mb-6 opacity-90" />
-          <h2 className="text-4xl mb-4">
-            Join the Stylus Community
-          </h2>
-          <p className="text-xl opacity-90 mb-8">
-            Contribute to the ecosystem. Share your projects, write tutorials, or help others get started.
-          </p>
-
-          <div className="flex flex-col sm:flex-row gap-4 justify-center mb-12">
-            <a
-              href="https://github.com/OffchainLabs/stylus"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="px-6 py-3 rounded-lg bg-white text-[#5F4DED] hover:bg-gray-100 transition-colors shadow-lg"
-            >
-              Contribute on GitHub
-            </a>
-            <a
-              href="#"
-              className="px-6 py-3 rounded-lg bg-transparent text-white border-2 border-white hover:bg-white/10 transition-colors"
-            >
-              Submit your project
-            </a>
-          </div>
-
-          {/* Community stats */}
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-6 pt-8 border-t border-white/20">
-            <div>
-              <div className="text-3xl mb-1">500+</div>
-              <div className="text-sm opacity-75">Developers</div>
-            </div>
-            <div>
-              <div className="text-3xl mb-1">15+</div>
-              <div className="text-sm opacity-75">Projects</div>
-            </div>
-            <div>
-              <div className="text-3xl mb-1">50+</div>
-              <div className="text-sm opacity-75">Resources</div>
-            </div>
-            <div>
-              <div className="text-3xl mb-1">5+</div>
-              <div className="text-sm opacity-75">Languages</div>
-            </div>
-          </div>
-        </div>
-      </section>
     </div>
   );
 }

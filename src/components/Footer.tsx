@@ -23,7 +23,7 @@ export function Footer() {
               </h3>
             </div>
             <p className="text-gray-600 text-sm leading-relaxed mb-6">
-              A community-owned resource hub for developers building with Stylus on Arbitrum. 
+              A community-owned resource hub for developers building with Stylus on Arbitrum.
               Built by developers, for developers.
             </p>
             <div className="flex gap-4">
@@ -37,14 +37,18 @@ export function Footer() {
                 <Github className="w-5 h-5" />
               </a>
               <a
-                href="#"
+                href="https://twitter.com/arbitrum"
+                target="_blank"
+                rel="noopener noreferrer"
                 className="w-10 h-10 rounded-lg bg-white hover:bg-[#5F4DED] text-gray-600 hover:text-white transition-all flex items-center justify-center border border-gray-200 shadow-sm"
                 aria-label="Twitter"
               >
                 <Twitter className="w-5 h-5" />
               </a>
               <a
-                href="#"
+                href="https://discord.gg/arbitrum"
+                target="_blank"
+                rel="noopener noreferrer"
                 className="w-10 h-10 rounded-lg bg-white hover:bg-[#5F4DED] text-gray-600 hover:text-white transition-all flex items-center justify-center border border-gray-200 shadow-sm"
                 aria-label="Discord"
               >
@@ -80,7 +84,7 @@ export function Footer() {
                 </a>
               </li>
               <li>
-                <a href="#" className="text-gray-600 hover:text-[#5F4DED] transition-colors">
+                <a href="https://www.youtube.com/@Arbitrum/search?query=stylus%20saturdays" target="_blank" rel="noopener noreferrer" className="text-gray-600 hover:text-[#5F4DED] transition-colors">
                   Stylus Saturdays
                 </a>
               </li>
@@ -97,7 +101,7 @@ export function Footer() {
                 </a>
               </li>
               <li>
-                <a href="#" className="text-gray-600 hover:text-[#5F4DED] transition-colors">
+                <a href="https://github.com/OffchainLabs/awesome-stylus" target="_blank" rel="noopener noreferrer" className="text-gray-600 hover:text-[#5F4DED] transition-colors">
                   Submit a Project
                 </a>
               </li>

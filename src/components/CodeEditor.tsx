@@ -1,8 +1,29 @@
 import { useState } from 'react';
-import { Play, Copy, Check, Terminal, AlertCircle, CheckCircle } from 'lucide-react';
+import { Play, CheckCircle } from 'lucide-react';
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from './ui/select';
+
+type Language = 'Rust' | 'C' | 'Zig';
 
 const codeExamples = {
-  Rust: `// Stylus Counter Contract
+  Rust: {
+    'Hello, World!': `// Stylus Hello World Contract
+#![cfg_attr(not(feature = "export-abi"), no_main)]
+extern crate alloc;
+
+use stylus_sdk::prelude::*;
+
+#[entrypoint]
+pub fn main() -> Result<(), Vec<u8>> {
+    // Your contract logic here
+    Ok(())
+}`,
+    'Counter': `// Stylus Counter Contract
 #![cfg_attr(not(feature = "export-abi"), no_main)]
 extern crate alloc;
 
@@ -26,7 +47,37 @@ impl Counter {
         self.count.get()
     }
 }`,
-  C: `// C to WASM with Stylus
+    'ERC20 Token': `// Stylus ERC20 Token
+#![cfg_attr(not(feature = "export-abi"), no_main)]
+extern crate alloc;
+
+use stylus_sdk::prelude::*;
+use stylus_sdk::storage::StorageU256;
+use stylus_sdk::evm;
+
+#[storage]
+#[entrypoint]
+pub struct Token {
+    total_supply: StorageU256,
+    balances: Mapping<Address, StorageU256>,
+}
+
+#[public]
+impl Token {
+    pub fn transfer(&mut self, to: Address, amount: U256) -> bool {
+        // Transfer logic
+        true
+    }
+}`,
+  },
+  C: {
+    'Hello, World!': `// C Hello World with Stylus
+#include <stdint.h>
+
+void main() {
+    // Your contract logic here
+}`,
+    'Counter': `// C to WASM with Stylus
 #include <stdint.h>
 
 uint256_t counter = 0;
@@ -38,7 +89,27 @@ void increment() {
 uint256_t get_count() {
     return counter;
 }`,
-  Zig: `// Zig Counter Contract
+    'Simple Storage': `// C Simple Storage Contract
+#include <stdint.h>
+
+uint256_t stored_value = 0;
+
+void set(uint256_t value) {
+    stored_value = value;
+}
+
+uint256_t get() {
+    return stored_value;
+}`,
+  },
+  Zig: {
+    'Hello, World!': `// Zig Hello World Contract
+const std = @import("std");
+
+pub fn main() void {
+    // Your contract logic here
+}`,
+    'Counter': `// Zig Counter Contract
 const std = @import("std");
 
 var counter: u256 = 0;
@@ -49,146 +120,160 @@ pub fn increment() void {
 
 pub fn getCount() u256 {
     return counter;
-}`
+}`,
+    'Math Library': `// Zig Math Operations
+const std = @import("std");
+
+pub fn add(a: u256, b: u256) u256 {
+    return a + b;
+}
+
+pub fn multiply(a: u256, b: u256) u256 {
+    return a * b;
+}`,
+  },
 };
 
-type CompileStatus = 'idle' | 'compiling' | 'success' | 'error';
-
 export function CodeEditor() {
-  const [selectedLang, setSelectedLang] = useState<keyof typeof codeExamples>('Rust');
-  const [code, setCode] = useState(codeExamples.Rust);
-  const [copied, setCopied] = useState(false);
-  const [compileStatus, setCompileStatus] = useState<CompileStatus>('idle');
+  const [selectedLang, setSelectedLang] = useState<Language>('Rust');
+  const [selectedExample, setSelectedExample] = useState<string>('Hello, World!');
+  const [code, setCode] = useState(codeExamples.Rust['Hello, World!']);
+  const [runStatus, setRunStatus] = useState<'idle' | 'running' | 'success'>('idle');
   const [output, setOutput] = useState('');
 
-  const handleLanguageChange = (lang: keyof typeof codeExamples) => {
+  const handleLanguageChange = (lang: Language) => {
     setSelectedLang(lang);
-    setCode(codeExamples[lang]);
-    setCompileStatus('idle');
+    const firstExample = Object.keys(codeExamples[lang])[0];
+    setSelectedExample(firstExample);
+    setCode(codeExamples[lang][firstExample as keyof typeof codeExamples[typeof lang]]);
+    setRunStatus('idle');
     setOutput('');
   };
 
-  const copyCode = () => {
-    navigator.clipboard.writeText(code);
-    setCopied(true);
-    setTimeout(() => setCopied(false), 2000);
+  const handleExampleChange = (example: string) => {
+    setSelectedExample(example);
+    setCode(codeExamples[selectedLang][example as keyof typeof codeExamples[typeof selectedLang]]);
+    setRunStatus('idle');
+    setOutput('');
   };
 
-  const compileCode = async () => {
-    setCompileStatus('compiling');
-    setOutput('Compiling...');
+  const runCode = async () => {
+    setRunStatus('running');
+    setOutput('Running...');
     
-    // Simulate compilation
-    await new Promise(resolve => setTimeout(resolve, 1500));
+    // Simulate execution
+    await new Promise(resolve => setTimeout(resolve, 1000));
     
-    // Mock compilation success
-    setCompileStatus('success');
-    setOutput(`✓ Compiled successfully!
+    setRunStatus('success');
+    setOutput(`Hello, 世界
 
-WASM size: 1.2 KB (optimized)
-Gas estimate: ~45,000 gas
-Deployment cost: ~0.000012 ETH
-
-Contract ready for deployment to Arbitrum Stylus.
-
-Example deployment:
-cargo stylus deploy --private-key <key>`);
+Program exited.`);
   };
+
+  const handleTour = () => {
+    // Navigate to tour or open tour modal
+    window.open('https://docs.stylus.arbitrum.io', '_blank');
+  };
+
+  const availableExamples = Object.keys(codeExamples[selectedLang]);
 
   return (
-    <div className="relative">
-      <div className="bg-[#1E1E1E] rounded-2xl shadow-2xl border border-gray-700 overflow-hidden">
-        {/* Editor header */}
-        <div className="bg-[#252526] px-4 py-3 border-b border-gray-700 flex items-center justify-between">
+    <div className="w-full">
+      <div className="bg-[#263238] rounded-lg overflow-hidden border border-gray-700 shadow-xl">
+        {/* Language tabs at the top */}
+        <div className="bg-[#1E2326] px-4 py-3 border-b border-gray-700">
           <div className="flex gap-2">
-            {(Object.keys(codeExamples) as Array<keyof typeof codeExamples>).map((lang) => (
+            {(Object.keys(codeExamples) as Language[]).map((lang) => (
               <button
                 key={lang}
                 onClick={() => handleLanguageChange(lang)}
-                className={`px-3 py-1.5 text-sm rounded-lg transition-all ${
+                className={`px-4 py-2 text-sm rounded-md transition-all font-medium ${
                   selectedLang === lang
-                    ? 'bg-gradient-to-r from-[#FF1F8F] to-[#9945FF] text-white shadow-sm'
-                    : 'text-gray-400 hover:text-white hover:bg-gray-800'
+                    ? 'bg-[#00ADD8] text-white'
+                    : 'text-gray-400 hover:text-white hover:bg-gray-700'
                 }`}
               >
                 {lang}
               </button>
             ))}
           </div>
-          <button
-            onClick={copyCode}
-            className="p-2 hover:bg-gray-800 rounded-lg transition-colors"
-            title="Copy code"
-          >
-            {copied ? (
-              <Check className="w-4 h-4 text-green-400" />
-            ) : (
-              <Copy className="w-4 h-4 text-gray-400" />
-            )}
-          </button>
         </div>
 
-        {/* Code editor */}
+        {/* Code editor area */}
         <div className="relative">
-          <div className="absolute top-2 left-2 text-xs text-gray-500">
-            Press Esc to exit editor
+          <div className="absolute top-3 left-3 text-xs text-gray-500 z-10">
+            Press Esc to move out of the editor.
+          </div>
+          <div className="absolute top-3 left-3 text-xs text-gray-400 z-10 mt-4">
+            // You can edit this code!
+          </div>
+          <div className="absolute top-3 left-3 text-xs text-gray-400 z-10 mt-6">
+            // Click here and start typing.
           </div>
           <textarea
             value={code}
             onChange={(e) => setCode(e.target.value)}
-            className="w-full h-[400px] bg-[#1E1E1E] text-gray-100 p-6 pt-8 font-mono text-sm leading-relaxed resize-none focus:outline-none focus:ring-2 focus:ring-[#5F4DED]/50"
+            className="w-full h-[500px] bg-[#263238] text-gray-100 p-6 pt-16 font-mono text-sm leading-relaxed resize-none focus:outline-none"
             spellCheck={false}
           />
         </div>
 
         {/* Output section */}
         {output && (
-          <div className="border-t border-gray-700 bg-[#252526]">
-            <div className="px-4 py-2 border-b border-gray-700 flex items-center gap-2">
-              <Terminal className="w-4 h-4 text-gray-400" />
-              <span className="text-sm text-gray-400">Output</span>
-            </div>
-            <div className="p-4 font-mono text-sm text-gray-300 whitespace-pre-wrap max-h-[200px] overflow-y-auto">
+          <div className="border-t border-gray-700 bg-[#263238]">
+            <div className="p-4 font-mono text-sm text-gray-300 whitespace-pre-wrap">
               {output}
             </div>
           </div>
         )}
 
-        {/* Footer */}
-        <div className="bg-[#252526] px-4 py-3 border-t border-gray-700 flex items-center justify-between">
-          <span className="text-sm text-gray-500">counter.rs</span>
-          <button 
-            onClick={compileCode}
-            disabled={compileStatus === 'compiling'}
-            className="flex items-center gap-2 px-4 py-2 text-sm bg-gradient-to-r from-[#FF1F8F] to-[#9945FF] text-white rounded-lg hover:opacity-90 transition-opacity disabled:opacity-50 disabled:cursor-not-allowed"
-          >
-            {compileStatus === 'compiling' ? (
-              <>
-                <div className="w-4 h-4 border-2 border-white border-t-transparent rounded-full animate-spin" />
-                Compiling...
-              </>
-            ) : compileStatus === 'success' ? (
-              <>
-                <CheckCircle className="w-4 h-4" />
-                Run Again
-              </>
-            ) : (
-              <>
-                <Play className="w-4 h-4" />
-                Compile & Run
-              </>
-            )}
-          </button>
+        {/* Controls bar with dropdown and buttons */}
+        <div className="bg-[#1E2326] border-t border-gray-700 px-4 py-3 flex items-center justify-between">
+          <Select value={selectedExample} onValueChange={handleExampleChange}>
+            <SelectTrigger className="w-[200px] bg-[#263238] border-gray-600 text-gray-200 hover:bg-[#2E3738]">
+              <SelectValue />
+            </SelectTrigger>
+            <SelectContent>
+              {availableExamples.map((example) => (
+                <SelectItem key={example} value={example}>
+                  {example}
+                </SelectItem>
+              ))}
+            </SelectContent>
+          </Select>
+
+          <div className="flex items-center gap-3">
+            <button
+              onClick={runCode}
+              disabled={runStatus === 'running'}
+              className="flex items-center gap-2 px-4 py-2 bg-[#00ADD8] hover:bg-[#0099C0] text-white rounded-md text-sm font-medium transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
+            >
+              {runStatus === 'running' ? (
+                <>
+                  <div className="w-4 h-4 border-2 border-white border-t-transparent rounded-full animate-spin" />
+                  Running...
+                </>
+              ) : runStatus === 'success' ? (
+                <>
+                  <CheckCircle className="w-4 h-4" />
+                  Run
+                </>
+              ) : (
+                <>
+                  <Play className="w-4 h-4 fill-white" />
+                  Run
+                </>
+              )}
+            </button>
+            <button
+              onClick={handleTour}
+              className="px-4 py-2 bg-transparent hover:bg-gray-700 text-gray-300 border border-gray-600 rounded-md text-sm font-medium transition-colors"
+            >
+              Tour
+            </button>
+          </div>
         </div>
       </div>
-
-      {/* Floating info badges */}
-      <div className="absolute -bottom-6 -left-6 bg-gradient-to-r from-[#5F4DED] to-[#7B68EE] rounded-xl shadow-lg px-4 py-3">
-        <div className="text-xs text-white/80">Powered by</div>
-        <div className="text-sm text-white">WebAssembly</div>
-      </div>
-      
-
     </div>
   );
 }

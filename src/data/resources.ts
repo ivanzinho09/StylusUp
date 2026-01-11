@@ -21,9 +21,9 @@ export const resourceCategories = {
           description: 'Official Stylus documentation'
         },
         {
-          name: 'Stylus Workshop',
-          url: '#',
-          description: 'Interactive learning platform'
+          name: 'Stylus By Example',
+          url: 'https://github.com/OffchainLabs/stylus-by-example',
+          description: 'Learn Stylus through practical examples'
         }
       ]
     },
@@ -32,38 +32,43 @@ export const resourceCategories = {
       resources: [
         {
           name: 'Quick Start Guide',
-          url: '#',
+          url: 'https://docs.arbitrum.io/stylus/stylus-quickstart',
           description: 'Get started in minutes'
         },
         {
-          name: 'Building a Counter',
-          url: '#',
-          description: 'Your first Stylus contract'
+          name: 'Stylus Tutorials',
+          url: 'https://github.com/OffchainLabs/stylus-tutorials',
+          description: 'Official tutorial repository'
         },
         {
-          name: 'Advanced Patterns',
-          url: '#',
-          description: 'Deep dive into best practices'
+          name: 'Awesome Stylus',
+          url: 'https://github.com/OffchainLabs/awesome-stylus',
+          description: 'Curated list of resources and examples'
         }
       ]
     },
     {
-      title: 'Books',
+      title: 'SDKs',
       resources: [
         {
-          name: 'The Stylus Book',
-          url: '#',
-          description: 'Comprehensive guide to Stylus development'
+          name: 'Stylus Rust SDK',
+          url: 'https://github.com/OffchainLabs/stylus-sdk-rs',
+          description: 'Write smart contracts in Rust'
+        },
+        {
+          name: 'Stylus C/C++ SDK',
+          url: 'https://github.com/OffchainLabs/stylus-sdk-c',
+          description: 'Write smart contracts in C/C++'
         }
       ]
     },
     {
-      title: 'Case Studies',
+      title: 'Documentation',
       resources: [
         {
-          name: 'Featured Projects',
-          url: '#',
-          description: 'Monthly spotlight from Stylus Saturdays'
+          name: 'Rust SDK Docs',
+          url: 'https://docs.rs/stylus-sdk/latest/stylus_sdk/',
+          description: 'API reference for Rust SDK'
         }
       ]
     }
@@ -74,33 +79,33 @@ export const resourceCategories = {
       resources: [
         {
           name: 'Stylus Playground',
-          url: '#',
+          url: 'https://thewizard.app',
           description: 'Online IDE for Stylus'
         },
         {
-          name: 'VSCode Extension',
-          url: '#',
-          description: 'Stylus syntax highlighting'
+          name: 'Stylus Remix Plugin',
+          url: 'https://welldonestudio.io/docs/code/stylus/remix',
+          description: 'Write and deploy in Remix IDE'
         }
       ]
     },
     {
-      title: 'Debuggers',
+      title: 'CLI Tools',
       resources: [
         {
-          name: 'Stylus Debugger',
-          url: '#',
-          description: 'Debug your contracts'
+          name: 'cargo-stylus',
+          url: 'https://crates.io/crates/cargo-stylus',
+          description: 'CLI tool for Stylus development'
         }
       ]
     },
     {
-      title: 'Auditors',
+      title: 'VSCode Extensions',
       resources: [
         {
-          name: 'Security Tools',
-          url: '#',
-          description: 'Audit your Stylus code'
+          name: 'Rust Analyzer',
+          url: 'https://marketplace.visualstudio.com/items?itemName=rust-lang.rust-analyzer',
+          description: 'Essential Rust support for VSCode'
         }
       ]
     },
@@ -108,31 +113,26 @@ export const resourceCategories = {
       title: 'Templates',
       resources: [
         {
-          name: 'Rust Template',
-          url: '#',
-          description: 'Quick start Rust template'
+          name: 'Stylus Hello World',
+          url: 'https://github.com/OffchainLabs/stylus-hello-world',
+          description: 'Starter template for Stylus'
         },
         {
-          name: 'AssemblyScript Template',
-          url: '#',
-          description: 'Quick start AS template'
+          name: 'Stylus Rust Template',
+          url: 'https://github.com/OffchainLabs/stylus-sdk-rs/tree/main/examples',
+          description: 'Official Rust SDK examples'
         }
       ]
     }
   ],
   projects: [
     {
-      title: 'Defi',
+      title: 'DeFi',
       resources: [
         {
-          name: 'Sample DEX',
-          url: '#',
-          description: 'Decentralized exchange built with Stylus'
-        },
-        {
-          name: 'Lending Protocol',
-          url: '#',
-          description: 'High-performance lending'
+          name: 'Stylus DEX Example',
+          url: 'https://github.com/OffchainLabs/stylus-tutorials',
+          description: 'Decentralized exchange patterns'
         }
       ]
     },
@@ -140,9 +140,9 @@ export const resourceCategories = {
       title: 'Gaming',
       resources: [
         {
-          name: 'On-chain Game',
-          url: '#',
-          description: 'Fully on-chain gaming example'
+          name: 'On-chain Gaming',
+          url: 'https://github.com/OffchainLabs/awesome-stylus#gaming',
+          description: 'Game development examples'
         }
       ]
     },
@@ -150,9 +150,9 @@ export const resourceCategories = {
       title: 'NFTs',
       resources: [
         {
-          name: 'NFT Collection',
-          url: '#',
-          description: 'Gas-efficient NFT contracts'
+          name: 'ERC-721 Example',
+          url: 'https://github.com/OffchainLabs/stylus-by-example',
+          description: 'NFT contracts in Stylus'
         }
       ]
     },
@@ -160,9 +160,9 @@ export const resourceCategories = {
       title: 'Infrastructure',
       resources: [
         {
-          name: 'Oracle System',
-          url: '#',
-          description: 'Decentralized oracle network'
+          name: 'Stylus Core',
+          url: 'https://github.com/OffchainLabs/stylus',
+          description: 'Core Stylus VM and fraud prover'
         }
       ]
     }
