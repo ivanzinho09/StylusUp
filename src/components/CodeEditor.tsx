@@ -160,19 +160,19 @@ export function CodeEditor() {
   const runCode = async () => {
     setRunStatus('running');
     setOutput('Running...');
-    
+
     // Simulate execution
     await new Promise(resolve => setTimeout(resolve, 1000));
-    
+
     setRunStatus('success');
     setOutput(`Hello, 世界
 
 Program exited.`);
   };
 
-  const handleTour = () => {
-    // Navigate to tour or open tour modal
-    window.open('https://docs.stylus.arbitrum.io', '_blank');
+  const handleWizard = () => {
+    // Navigate to Stylus Wizard/Playground
+    window.open('https://thewizard.app', '_blank');
   };
 
   const availableExamples = Object.keys(codeExamples[selectedLang]);
@@ -187,11 +187,10 @@ Program exited.`);
               <button
                 key={lang}
                 onClick={() => handleLanguageChange(lang)}
-                className={`px-4 py-2 text-sm rounded-md transition-all font-medium ${
-                  selectedLang === lang
+                className={`px-4 py-2 text-sm rounded-md transition-all font-medium ${selectedLang === lang
                     ? 'bg-[#00ADD8] text-white'
                     : 'text-gray-400 hover:text-white hover:bg-gray-700'
-                }`}
+                  }`}
               >
                 {lang}
               </button>
@@ -213,7 +212,7 @@ Program exited.`);
           <textarea
             value={code}
             onChange={(e) => setCode(e.target.value)}
-            className="w-full h-[500px] bg-[#263238] text-gray-100 p-6 pt-16 font-mono text-sm leading-relaxed resize-none focus:outline-none"
+            className="w-full h-[300px] bg-[#263238] text-gray-100 p-6 pt-16 font-mono text-sm leading-relaxed resize-none focus:outline-none"
             spellCheck={false}
           />
         </div>
@@ -266,10 +265,10 @@ Program exited.`);
               )}
             </button>
             <button
-              onClick={handleTour}
+              onClick={handleWizard}
               className="px-4 py-2 bg-transparent hover:bg-gray-700 text-gray-300 border border-gray-600 rounded-md text-sm font-medium transition-colors"
             >
-              Tour
+              Wizard
             </button>
           </div>
         </div>

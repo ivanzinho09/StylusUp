@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { Menu, X, ExternalLink, Github, Twitter } from 'lucide-react';
+import { Menu, X, ExternalLink, Github } from 'lucide-react';
 
 export function Header() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
@@ -37,13 +37,17 @@ export function Header() {
       <header className="sticky top-0 z-50 bg-white/95 backdrop-blur-md border-b border-gray-200 shadow-sm">
         <div className="max-w-7xl mx-auto px-6 lg:px-8">
           <div className="flex items-center justify-between h-16">
-            <div className="flex items-center gap-2">
+            <a
+              href="#get-started"
+              onClick={(e) => handleNavClick(e, 'get-started')}
+              className="flex items-center gap-2 cursor-pointer"
+            >
               <img src="/logo.svg" alt="StylusUp Logo" className="h-10 w-10" />
               <span style={{ fontFamily: "'Unica77 LL', sans-serif" }} className="text-[28px] font-normal tracking-tight leading-none mt-0.5 ml-1">
                 <span className="text-[#5F4DED]">Stylus</span>
                 <span className="text-[#0F172A] italic">Up</span>
               </span>
-            </div>
+            </a>
 
             {/* Desktop Navigation */}
             <nav className="hidden md:flex items-center gap-8">
@@ -55,8 +59,8 @@ export function Header() {
                 Get Started
               </a>
               <a
-                href="#projects"
-                onClick={(e) => handleNavClick(e, 'projects')}
+                href="#use-cases"
+                onClick={(e) => handleNavClick(e, 'use-cases')}
                 className="text-gray-600 hover:text-[#5F4DED] transition-colors cursor-pointer"
               >
                 Projects
@@ -140,8 +144,8 @@ export function Header() {
                 Get Started
               </a>
               <a
-                href="#projects"
-                onClick={(e) => handleNavClick(e, 'projects')}
+                href="#use-cases"
+                onClick={(e) => handleNavClick(e, 'use-cases')}
                 className="text-2xl text-gray-900 hover:text-[#5F4DED] transition-colors cursor-pointer"
               >
                 Projects
@@ -195,13 +199,15 @@ export function Header() {
                   <Github className="w-6 h-6" />
                 </a>
                 <a
-                  href="https://twitter.com/arbitrum"
+                  href="https://x.com/arbitrum"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="text-gray-900 hover:text-[#5F4DED] transition-colors"
-                  aria-label="Twitter"
+                  aria-label="X (formerly Twitter)"
                 >
-                  <Twitter className="w-6 h-6" />
+                  <svg className="w-6 h-6" viewBox="0 0 24 24" fill="currentColor">
+                    <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z" />
+                  </svg>
                 </a>
               </div>
             </div>

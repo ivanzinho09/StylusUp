@@ -1,4 +1,4 @@
-import { Github, Twitter, MessageCircle, Mail } from 'lucide-react';
+import { Github, MessageCircle, Mail } from 'lucide-react';
 
 export function Footer() {
   return (
@@ -7,20 +7,12 @@ export function Footer() {
         <div className="grid grid-cols-1 md:grid-cols-4 gap-12 mb-12">
           {/* Brand */}
           <div className="col-span-1 md:col-span-2">
-            <div className="flex items-center gap-3 mb-4">
-              <svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <rect width="32" height="32" rx="6" fill="url(#gradient-footer)" />
-                <path d="M10 12L16 8L22 12V20L16 24L10 20V12Z" stroke="white" strokeWidth="2" strokeLinejoin="round" />
-                <defs>
-                  <linearGradient id="gradient-footer" x1="0" y1="0" x2="32" y2="32">
-                    <stop stopColor="#5F4DED" />
-                    <stop offset="1" stopColor="#7B68EE" />
-                  </linearGradient>
-                </defs>
-              </svg>
-              <h3 className="text-gray-900 text-lg">
-                Stylusup
-              </h3>
+            <div className="flex items-center gap-2 mb-4">
+              <img src="/logo.svg" alt="StylusUp Logo" className="h-10 w-10" />
+              <span style={{ fontFamily: "'Unica77 LL', sans-serif" }} className="text-[28px] font-normal tracking-tight leading-none mt-0.5 ml-1">
+                <span className="text-[#5F4DED]">Stylus</span>
+                <span className="text-[#0F172A] italic">Up</span>
+              </span>
             </div>
             <p className="text-gray-600 text-sm leading-relaxed mb-6">
               A community-owned resource hub for developers building with Stylus on Arbitrum.
@@ -37,13 +29,15 @@ export function Footer() {
                 <Github className="w-5 h-5" />
               </a>
               <a
-                href="https://twitter.com/arbitrum"
+                href="https://x.com/arbitrum"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="w-10 h-10 rounded-lg bg-white hover:bg-[#5F4DED] text-gray-600 hover:text-white transition-all flex items-center justify-center border border-gray-200 shadow-sm"
-                aria-label="Twitter"
+                aria-label="X (formerly Twitter)"
               >
-                <Twitter className="w-5 h-5" />
+                <svg className="w-5 h-5" viewBox="0 0 24 24" fill="currentColor">
+                  <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z" />
+                </svg>
               </a>
               <a
                 href="https://discord.gg/arbitrum"

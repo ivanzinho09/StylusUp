@@ -35,26 +35,20 @@ export function ResourceGrid() {
 
   return (
     <div className="bg-white">
-      {/* Quick Start Section */}
+      {/* What's Possible Section */}
+      <WhatsPossible />
 
-      {/* Try Stylus Code Section */}
-      <section className="py-20 bg-white">
+      {/* Try Stylus Code Section - Right above Learn Stylus */}
+      <section className="py-20 bg-gray-50">
         <div className="max-w-7xl mx-auto px-6 lg:px-8">
           <div className="text-center mb-12">
-            <h2 className="text-4xl text-gray-900 mb-4">Try Stylus</h2>
+            <h2 className="text-4xl text-gray-900 mb-4 flex items-center justify-center gap-3">
+              Try <img src="/images/StylusWordmark.svg" alt="Stylus" className="h-10 inline-block" />
+            </h2>
           </div>
           <CodeEditor />
         </div>
       </section>
-
-      {/* What's Possible Section */}
-      <WhatsPossible />
-
-      {/* Projects Section */}
-
-
-      {/* Project Showcase Section - Right after Projects */}
-
 
       {/* Learn and Build Sections */}
       {sections.slice(1).map((section, sectionIndex) => (
