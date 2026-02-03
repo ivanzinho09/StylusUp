@@ -20,7 +20,7 @@ export function Footer() {
             </p>
             <div className="flex gap-4">
               <a
-                href="https://github.com/OffchainLabs/stylus"
+                href="https://github.com/OffchainLabs/stylus-sdk-rs/"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="w-10 h-10 rounded-lg bg-white hover:bg-[#5F4DED] text-gray-600 hover:text-white transition-all flex items-center justify-center border border-gray-200 shadow-sm"
@@ -100,7 +100,7 @@ export function Footer() {
                 </a>
               </li>
               <li>
-                <a href="https://github.com/OffchainLabs/stylus" className="text-gray-600 hover:text-[#5F4DED] transition-colors">
+                <a href="https://github.com/OffchainLabs/stylus-sdk-rs/" className="text-gray-600 hover:text-[#5F4DED] transition-colors">
                   GitHub
                 </a>
               </li>

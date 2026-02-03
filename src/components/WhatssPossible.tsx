@@ -6,11 +6,11 @@ const useCases = [
     title: 'Development Tools & SDKs',
     description: 'Blazing fast tooling and frameworks to build, test, and deploy Stylus smart contracts with zero setup.',
     packages: [
-      { name: 'rustmate', url: 'https://github.com/halo3mic/rustmate' },
       { name: 'scaffold-stylus', url: 'https://github.com/rkdud007/scaffold-stylus' },
       { name: 'stylus-by-example', url: 'https://github.com/OffchainLabs/stylus-by-example' },
       { name: 'wizard', url: 'https://github.com/OffchainLabs/stylus-wizard' },
       { name: 'bobcat-sdk', url: 'https://github.com/Bobcat-BCAT/bobcat-sdk' },
+      { name: 'awesome-stylus', url: 'https://github.com/OffchainLabs/awesome-stylus' },
     ],
   },
   {
@@ -18,10 +18,10 @@ const useCases = [
     title: 'DeFi Protocols',
     description: 'Build high-performance DeFi applications with complex mathematical operations at a fraction of the gas cost.',
     packages: [
-      { name: 'long.so', url: 'https://github.com/longtail-finance/long.so' },
       { name: '9lives.so', url: 'https://9lives.so' },
+      { name: 'longtail', url: 'https://github.com/fluidity-money/long.so' },
+      { name: 'renegade', url: 'https://github.com/renegade-fi/renegade-stylus-contracts' },
       { name: 'stylus-sdk', url: 'https://github.com/OffchainLabs/stylus-sdk-rs' },
-      { name: 'openbook-v2', url: 'https://github.com/openbook-dex/openbook-v2' },
     ],
   },
   {
@@ -32,7 +32,6 @@ const useCases = [
       { name: 'cargo-stylus-walnut', url: 'https://github.com/OffchainLabs/cargo-stylus-walnut' },
       { name: 'arbitrum-stylus-starter-c', url: 'https://github.com/OffchainLabs/arbitrum-stylus-starter-c' },
       { name: 'stylus-sdk-rs', url: 'https://github.com/OffchainLabs/stylus-sdk-rs' },
-      { name: 'cargo-stylus', url: 'https://github.com/OffchainLabs/cargo-stylus' },
     ],
   },
   {
@@ -42,7 +41,7 @@ const useCases = [
     packages: [
       { name: 'arkworks', url: 'https://github.com/arkworks-rs' },
       { name: 'bellman', url: 'https://github.com/zkcrypto/bellman' },
-      { name: 'ed25519-dalek', url: 'https://github.com/dalek-cryptography/ed25519-dalek' },
+      { name: 'ed25519-dalek', url: 'https://github.com/fluidity-money/superposition-precompiles' },
       { name: 'secp256k1', url: 'https://github.com/rust-bitcoin/rust-secp256k1' },
       { name: 'bulletproofs', url: 'https://github.com/dalek-cryptography/bulletproofs' },
     ],
@@ -53,8 +52,6 @@ const useCases = [
     description: 'Build reliable cross-chain infrastructure and oracle networks with performance and safety guarantees.',
     packages: [
       { name: 'redstone-oracles', url: 'https://redstone.finance' },
-      { name: 'chainlink', url: 'https://docs.chain.link/arbitrum' },
-      { name: 'layerzero', url: 'https://layerzero.network' },
       { name: 'wormhole', url: 'https://wormhole.com' },
     ],
   },
@@ -65,7 +62,6 @@ const useCases = [
     packages: [
       { name: 'stylus-by-example', url: 'https://github.com/OffchainLabs/stylus-by-example' },
       { name: 'erc721', url: 'https://docs.openzeppelin.com/contracts/4.x/erc721' },
-      { name: 'awesome-stylus', url: 'https://github.com/OffchainLabs/awesome-stylus' },
     ],
   },
 ];
@@ -89,8 +85,7 @@ export function WhatsPossible() {
           {useCases.map((useCase, index) => (
             <div
               key={index}
-              className={`w-full border border-gray-200 rounded-xl p-6 hover:border-[#5F4DED] hover:shadow-lg transition-all group relative overflow-hidden ${index === 0 || index === 1 || index === 2 ? '' : 'bg-white'
-                }`}
+              className={`w-full border border-gray-200 rounded-xl p-6 hover:border-[#5F4DED] hover:shadow-lg transition-all group relative overflow-hidden`}
               style={
                 index === 0
                   ? {
@@ -113,7 +108,28 @@ export function WhatsPossible() {
                         backgroundPosition: 'center',
                         backgroundRepeat: 'no-repeat',
                       }
-                      : {}
+                      : index === 3
+                        ? {
+                          backgroundImage: 'url(/images/CryptographyBG.svg)',
+                          backgroundSize: 'cover',
+                          backgroundPosition: 'center',
+                          backgroundRepeat: 'no-repeat',
+                        }
+                        : index === 4
+                          ? {
+                            backgroundImage: 'url(/images/BridgeBG.svg)',
+                            backgroundSize: 'cover',
+                            backgroundPosition: 'center',
+                            backgroundRepeat: 'no-repeat',
+                          }
+                          : index === 5
+                            ? {
+                              backgroundImage: 'url(/images/GamesBG.svg)',
+                              backgroundSize: 'cover',
+                              backgroundPosition: 'center',
+                              backgroundRepeat: 'no-repeat',
+                            }
+                            : {}
               }
             >
               {/* Icon and title */}
@@ -156,18 +172,17 @@ export function WhatsPossible() {
                 </div>
               </div>
 
-              {/* Learn more link */}
-              <a
-                href="https://docs.arbitrum.io/stylus/stylus-gentle-introduction"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="inline-flex items-center gap-2 text-sm text-gray-600 hover:text-[#FF1F8F] transition-colors mt-4 group-hover:gap-3"
+              {/* Learn more link - disabled */}
+              <button
+                onClick={(e) => e.preventDefault()}
+                className="inline-flex items-center gap-2 text-sm text-gray-600 hover:text-[#FF1F8F] transition-colors mt-4 group-hover:gap-3 cursor-not-allowed opacity-50"
+                disabled
               >
                 Learn More
                 <svg className="w-4 h-4 transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
                 </svg>
-              </a>
+              </button>
             </div>
           ))}
         </div>

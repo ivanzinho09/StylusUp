@@ -161,7 +161,7 @@ export const resourceCategories = {
       resources: [
         {
           name: 'Stylus Core',
-          url: 'https://github.com/OffchainLabs/stylus',
+          url: 'https://github.com/OffchainLabs/stylus-sdk-rs/',
           description: 'Core Stylus VM and fraud prover'
         }
       ]

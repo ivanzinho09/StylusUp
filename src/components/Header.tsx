@@ -190,7 +190,7 @@ export function Header() {
             <div className="p-6 border-t border-gray-200">
               <div className="flex items-center gap-6">
                 <a
-                  href="https://github.com/OffchainLabs/stylus"
+                  href="https://github.com/OffchainLabs/stylus-sdk-rs/"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="text-gray-900 hover:text-[#5F4DED] transition-colors"
