@@ -1,4 +1,4 @@
-import { Zap, Shield, Code2, Sparkles } from 'lucide-react';
+import { Zap, Shield, Code2, Sparkles, Search } from 'lucide-react';
 
 const features = [
   {
@@ -23,7 +23,11 @@ const features = [
   }
 ];
 
-export function HeroSection() {
+interface HeroSectionProps {
+  onSearchClick?: () => void;
+}
+
+export function HeroSection({ onSearchClick }: HeroSectionProps) {
   return (
     <section
       id="get-started"
@@ -56,6 +60,20 @@ export function HeroSection() {
             <p className="text-xl text-white/80 leading-relaxed max-w-lg mx-auto lg:mx-0">
               Build with Rust, AssemblyScript, Move, and Zig, on any Arbitrum chain.
             </p>
+
+            {/* Fake Search Bar - Triggers Search Modal */}
+            <button
+              onClick={onSearchClick}
+              className="w-full max-w-xl mx-auto lg:mx-0 mt-6 flex items-center gap-3 px-5 py-4 rounded-xl bg-white/10 backdrop-blur-sm border-2 border-white/30 hover:bg-white/20 hover:border-white/50 transition-all group cursor-pointer shadow-lg"
+            >
+              <Search className="w-5 h-5 text-white/60 group-hover:text-white/80 transition-colors" />
+              <span className="flex-1 text-left text-white/60 group-hover:text-white/80 transition-colors font-medium">
+                Search packages, tools, docs...
+              </span>
+              <kbd className="px-3 py-1.5 text-sm font-semibold text-white/80 bg-white/10 border border-white/30 rounded-lg group-hover:bg-white/20 transition-all">
+                ⌘K
+              </kbd>
+            </button>
 
             <div className="flex flex-wrap gap-4 pt-4 justify-center lg:justify-start">
               <a

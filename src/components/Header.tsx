@@ -1,10 +1,12 @@
 import { useState, useEffect } from 'react';
 import { Menu, X, ExternalLink, Github, Search } from 'lucide-react';
-import { SearchModal } from './SearchModal';
 
-export function Header() {
+interface HeaderProps {
+  onSearchClick?: () => void;
+}
+
+export function Header({ onSearchClick }: HeaderProps) {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
-  const [searchModalOpen, setSearchModalOpen] = useState(false);
 
   const toggleMobileMenu = () => {
     setMobileMenuOpen(!mobileMenuOpen);
@@ -39,13 +41,13 @@ export function Header() {
     const handleKeyDown = (e: KeyboardEvent) => {
       if ((e.metaKey || e.ctrlKey) && e.key === 'k') {
         e.preventDefault();
-        setSearchModalOpen(true);
+        onSearchClick?.();
       }
     };
 
     document.addEventListener('keydown', handleKeyDown);
     return () => document.removeEventListener('keydown', handleKeyDown);
-  }, []);
+  }, [onSearchClick]);
 
   return (
     <>
@@ -102,7 +104,7 @@ export function Header() {
                 Community
               </a>
               <button
-                onClick={() => setSearchModalOpen(true)}
+                onClick={onSearchClick}
                 className="flex items-center gap-2 px-3 py-2 rounded-lg bg-gray-100 hover:bg-gray-200 text-gray-600 transition-colors"
               >
                 <Search className="w-4 h-4" />
@@ -240,9 +242,6 @@ export function Header() {
           </div>
         </div>
       )}
-
-      {/* Search Modal */}
-      <SearchModal isOpen={searchModalOpen} onClose={() => setSearchModalOpen(false)} />
     </>
   );
 }
