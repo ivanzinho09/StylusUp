@@ -35,7 +35,7 @@ export const searchData: SearchItem[] = [
         id: 'wizard',
         name: 'wizard',
         description: 'Stylus project wizard and scaffolding tool',
-        url: 'https://github.com/OffchainLabs/stylus-wizard',
+        url: 'https://thewizard.app/',
         category: 'Development Tools & SDKs',
         tags: ['wizard', 'scaffolding', 'tools'],
         icon: Code,

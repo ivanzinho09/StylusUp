@@ -188,8 +188,8 @@ Program exited.`);
                 key={lang}
                 onClick={() => handleLanguageChange(lang)}
                 className={`px-4 py-2 text-sm rounded-md transition-all font-medium ${selectedLang === lang
-                    ? 'bg-[#00ADD8] text-white'
-                    : 'text-gray-400 hover:text-white hover:bg-gray-700'
+                  ? 'bg-[#00ADD8] text-white'
+                  : 'text-gray-400 hover:text-white hover:bg-gray-700'
                   }`}
               >
                 {lang}
@@ -244,8 +244,8 @@ Program exited.`);
           <div className="flex items-center gap-3">
             <button
               onClick={runCode}
-              disabled={runStatus === 'running'}
-              className="flex items-center gap-2 px-4 py-2 bg-[#00ADD8] hover:bg-[#0099C0] text-white rounded-md text-sm font-medium transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
+              disabled={true}
+              className="flex items-center gap-2 px-4 py-2 bg-[#00ADD8] text-white rounded-md text-sm font-medium opacity-50 cursor-not-allowed"
             >
               {runStatus === 'running' ? (
                 <>

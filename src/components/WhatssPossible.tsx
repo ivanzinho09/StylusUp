@@ -8,7 +8,7 @@ const useCases = [
     packages: [
       { name: 'scaffold-stylus', url: 'https://github.com/rkdud007/scaffold-stylus' },
       { name: 'stylus-by-example', url: 'https://github.com/OffchainLabs/stylus-by-example' },
-      { name: 'wizard', url: 'https://github.com/OffchainLabs/stylus-wizard' },
+      { name: 'wizard', url: 'https://thewizard.app/' },
       { name: 'bobcat-sdk', url: 'https://github.com/Bobcat-BCAT/bobcat-sdk' },
       { name: 'awesome-stylus', url: 'https://github.com/OffchainLabs/awesome-stylus' },
     ],
