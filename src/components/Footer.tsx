@@ -1,4 +1,4 @@
-import { Github, MessageCircle, Mail } from 'lucide-react';
+import { Github, MessageCircle } from 'lucide-react';
 
 export function Footer() {
   return (
@@ -47,13 +47,6 @@ export function Footer() {
                 aria-label="Discord"
               >
                 <MessageCircle className="w-5 h-5" />
-              </a>
-              <a
-                href="#"
-                className="w-10 h-10 rounded-lg bg-white hover:bg-[#5F4DED] text-gray-600 hover:text-white transition-all flex items-center justify-center border border-gray-200 shadow-sm"
-                aria-label="Newsletter"
-              >
-                <Mail className="w-5 h-5" />
               </a>
             </div>
           </div>
