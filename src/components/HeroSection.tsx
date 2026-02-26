@@ -1,4 +1,6 @@
 import { Zap, Shield, Code2, Sparkles, Search } from 'lucide-react';
+import { Link } from 'react-router-dom';
+import { EcosystemStats } from './EcosystemStats';
 
 const features = [
   {
@@ -90,19 +92,28 @@ export function HeroSection({ onSearchClick }: HeroSectionProps) {
               >
                 Start Building
               </a>
+              <Link
+                to="/ecosystem"
+                className="px-6 py-3 rounded-lg bg-white/15 text-white font-medium border-2 border-white/30 hover:bg-white/25 transition-all backdrop-blur-sm flex items-center gap-2"
+              >
+                🌐 Explore Ecosystem
+              </Link>
             </div>
           </div>
 
           {/* Right side - Character illustration */}
-          <div className="relative flex justify-center lg:justify-end order-2">
+          <div className="hidden lg:flex relative justify-end order-2">
             <img
               src="/images/IsolatedApu.svg"
               alt="StylusUp Community Characters"
-              className="w-full max-w-[500px] lg:max-w-[600px] h-auto"
+              className="w-full max-w-[600px] h-auto"
             />
           </div>
         </div>
       </div>
+
+      {/* Chainlink-style stats and logos banner */}
+      <EcosystemStats />
 
       {/* Features grid - Below the hero */}
       <div className="relative bg-white py-16">

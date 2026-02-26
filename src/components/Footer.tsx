@@ -1,6 +1,24 @@
 import { Github, MessageCircle } from 'lucide-react';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 
 export function Footer() {
+  const location = useLocation();
+  const navigate = useNavigate();
+
+  const handleHashLink = (e: React.MouseEvent<HTMLAnchorElement>, hash: string) => {
+    e.preventDefault();
+    if (location.pathname !== '/') {
+      navigate('/');
+      setTimeout(() => {
+        const el = document.getElementById(hash);
+        if (el) window.scrollTo({ top: el.getBoundingClientRect().top + window.pageYOffset - 80, behavior: 'smooth' });
+      }, 100);
+    } else {
+      const el = document.getElementById(hash);
+      if (el) window.scrollTo({ top: el.getBoundingClientRect().top + window.pageYOffset - 80, behavior: 'smooth' });
+    }
+  };
+
   return (
     <footer className="bg-gray-50 text-gray-600 border-t border-gray-200">
       <div className="max-w-7xl mx-auto px-6 lg:px-8 py-16">
@@ -14,7 +32,7 @@ export function Footer() {
                 <span className="text-[#0F172A] italic">Up</span>
               </span>
             </div>
-            <p className="text-gray-600 text-sm leading-relaxed mb-6">
+            <p className="text-gray-600 text-sm leading-relaxed mb-6 max-w-sm">
               A community-owned resource hub for developers building with Stylus on Arbitrum.
               Built by developers, for developers.
             </p>
@@ -51,55 +69,55 @@ export function Footer() {
             </div>
           </div>
 
-          {/* Resources */}
+          {/* Ecosystem & Projects */}
           <div>
-            <h4 className="text-gray-900 mb-4">Resources</h4>
+            <h4 className="text-gray-900 font-semibold mb-4">Ecosystem</h4>
             <ul className="space-y-3 text-sm">
               <li>
-                <a href="#learn" className="text-gray-600 hover:text-[#5F4DED] transition-colors">
-                  Documentation
+                <Link to="/ecosystem" onClick={() => window.scrollTo(0, 0)} className="text-gray-600 hover:text-[#5F4DED] transition-colors">
+                  Explore Directory
+                </Link>
+              </li>
+              <li>
+                <Link to="/ecosystem/submit" onClick={() => window.scrollTo(0, 0)} className="text-gray-600 hover:text-[#5F4DED] transition-colors">
+                  Submit a Project
+                </Link>
+              </li>
+              <li>
+                <a href="#use-cases" onClick={(e) => handleHashLink(e, 'use-cases')} className="text-gray-600 hover:text-[#5F4DED] transition-colors">
+                  Project Spotlights
                 </a>
               </li>
               <li>
-                <a href="#learn" className="text-gray-600 hover:text-[#5F4DED] transition-colors">
-                  Tutorials
-                </a>
-              </li>
-              <li>
-                <a href="#projects" className="text-gray-600 hover:text-[#5F4DED] transition-colors">
-                  Case Studies
-                </a>
-              </li>
-              <li>
-                <a href="https://www.youtube.com/@Arbitrum/search?query=stylus%20saturdays" target="_blank" rel="noopener noreferrer" className="text-gray-600 hover:text-[#5F4DED] transition-colors">
-                  Stylus Saturdays
+                <a href="https://docs.arbitrum.io/stylus/stylus-gentle-introduction" target="_blank" rel="noopener noreferrer" className="text-gray-600 hover:text-[#5F4DED] transition-colors">
+                  Official Docs
                 </a>
               </li>
             </ul>
           </div>
 
-          {/* Community */}
+          {/* Resources & Community */}
           <div>
-            <h4 className="text-gray-900 mb-4">Community</h4>
+            <h4 className="text-gray-900 font-semibold mb-4">Resources</h4>
             <ul className="space-y-3 text-sm">
               <li>
-                <a href="#community" className="text-gray-600 hover:text-[#5F4DED] transition-colors">
-                  Contribute
+                <a href="#get-started" onClick={(e) => handleHashLink(e, 'get-started')} className="text-gray-600 hover:text-[#5F4DED] transition-colors">
+                  Get Started
                 </a>
               </li>
               <li>
-                <a href="https://github.com/OffchainLabs/awesome-stylus" target="_blank" rel="noopener noreferrer" className="text-gray-600 hover:text-[#5F4DED] transition-colors">
-                  Submit a Project
+                <a href="#learn" onClick={(e) => handleHashLink(e, 'learn')} className="text-gray-600 hover:text-[#5F4DED] transition-colors">
+                  Learn & Tutorials
                 </a>
               </li>
               <li>
-                <a href="https://github.com/OffchainLabs/stylus-sdk-rs/" className="text-gray-600 hover:text-[#5F4DED] transition-colors">
-                  GitHub
+                <a href="#build" onClick={(e) => handleHashLink(e, 'build')} className="text-gray-600 hover:text-[#5F4DED] transition-colors">
+                  Build
                 </a>
               </li>
               <li>
-                <a href="https://docs.arbitrum.io/stylus/stylus-gentle-introduction" className="text-gray-600 hover:text-[#5F4DED] transition-colors">
-                  Official Docs
+                <a href="#community" onClick={(e) => handleHashLink(e, 'community')} className="text-gray-600 hover:text-[#5F4DED] transition-colors">
+                  Community Hub
                 </a>
               </li>
             </ul>
@@ -112,15 +130,9 @@ export function Footer() {
             © 2025 Stylusup. Community-owned and maintained.
           </p>
           <div className="flex gap-6 text-sm">
-            <a href="#" className="text-gray-600 hover:text-[#5F4DED] transition-colors">
-              Privacy
-            </a>
-            <a href="#" className="text-gray-600 hover:text-[#5F4DED] transition-colors">
-              Terms
-            </a>
-            <a href="#" className="text-gray-600 hover:text-[#5F4DED] transition-colors">
-              License
-            </a>
+            <a href="#" className="text-gray-600 hover:text-[#5F4DED] transition-colors">Privacy</a>
+            <a href="#" className="text-gray-600 hover:text-[#5F4DED] transition-colors">Terms</a>
+            <a href="#" className="text-gray-600 hover:text-[#5F4DED] transition-colors">License</a>
           </div>
         </div>
       </div>

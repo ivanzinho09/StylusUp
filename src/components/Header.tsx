@@ -1,5 +1,6 @@
-import { useState, useEffect } from 'react';
-import { Menu, X, ExternalLink, Github, Search } from 'lucide-react';
+import { useState, useEffect, useRef } from 'react';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
+import { Menu, X, ExternalLink, Github, Search, ChevronDown } from 'lucide-react';
 
 interface HeaderProps {
   onSearchClick?: () => void;
@@ -7,6 +8,8 @@ interface HeaderProps {
 
 export function Header({ onSearchClick }: HeaderProps) {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const location = useLocation();
+  const navigate = useNavigate();
 
   const toggleMobileMenu = () => {
     setMobileMenuOpen(!mobileMenuOpen);
@@ -20,20 +23,29 @@ export function Header({ onSearchClick }: HeaderProps) {
     e.preventDefault();
     closeMobileMenu();
 
-    // Small delay to allow mobile menu to close
-    setTimeout(() => {
-      const element = document.getElementById(targetId);
-      if (element) {
-        const headerOffset = 80; // Height of sticky header
-        const elementPosition = element.getBoundingClientRect().top;
-        const offsetPosition = elementPosition + window.pageYOffset - headerOffset;
+    const scrollToTarget = () => {
+      // Small delay to allow mobile menu to close and page to render if routed
+      setTimeout(() => {
+        const element = document.getElementById(targetId);
+        if (element) {
+          const headerOffset = 80; // Height of sticky header
+          const elementPosition = element.getBoundingClientRect().top;
+          const offsetPosition = elementPosition + window.pageYOffset - headerOffset;
 
-        window.scrollTo({
-          top: offsetPosition,
-          behavior: 'smooth'
-        });
-      }
-    }, mobileMenuOpen ? 100 : 0);
+          window.scrollTo({
+            top: offsetPosition,
+            behavior: 'smooth'
+          });
+        }
+      }, mobileMenuOpen ? 300 : 100);
+    };
+
+    if (location.pathname !== '/') {
+      navigate('/');
+      scrollToTarget();
+    } else {
+      scrollToTarget();
+    }
   };
 
   // Keyboard shortcut for search (Cmd+K / Ctrl+K)
@@ -54,9 +66,8 @@ export function Header({ onSearchClick }: HeaderProps) {
       <header className="sticky top-0 z-50 bg-white/95 backdrop-blur-md border-b border-gray-200 shadow-sm">
         <div className="max-w-7xl mx-auto px-6 lg:px-8">
           <div className="flex items-center justify-between h-16">
-            <a
-              href="#get-started"
-              onClick={(e) => handleNavClick(e, 'get-started')}
+            <Link
+              to="/"
               className="flex items-center gap-2 cursor-pointer"
             >
               <img src="/logo.svg" alt="StylusUp Logo" className="h-10 w-10" />
@@ -64,42 +75,70 @@ export function Header({ onSearchClick }: HeaderProps) {
                 <span className="text-[#5F4DED]">Stylus</span>
                 <span className="text-[#0F172A] italic">Up</span>
               </span>
-            </a>
+            </Link>
 
             {/* Desktop Navigation */}
             <nav className="hidden md:flex items-center gap-8">
-              <a
-                href="#get-started"
-                onClick={(e) => handleNavClick(e, 'get-started')}
-                className="text-gray-600 hover:text-[#5F4DED] transition-colors cursor-pointer"
-              >
-                Get Started
-              </a>
-              <a
-                href="#use-cases"
-                onClick={(e) => handleNavClick(e, 'use-cases')}
-                className="text-gray-600 hover:text-[#5F4DED] transition-colors cursor-pointer"
-              >
-                Projects
-              </a>
-              <a
-                href="#learn"
-                onClick={(e) => handleNavClick(e, 'learn')}
-                className="text-gray-600 hover:text-[#5F4DED] transition-colors cursor-pointer"
-              >
-                Learn
-              </a>
-              <a
-                href="#build"
-                onClick={(e) => handleNavClick(e, 'build')}
-                className="text-gray-600 hover:text-[#5F4DED] transition-colors cursor-pointer"
-              >
-                Build
-              </a>
+
+              {/* Build Dropdown (Experienced Builders) */}
+              <div className="relative group py-4">
+                <button className="flex items-center gap-1 text-gray-600 group-hover:text-[#5F4DED] transition-colors font-medium">
+                  Build <ChevronDown className="w-4 h-4 group-hover:rotate-180 transition-transform duration-200" />
+                </button>
+                <div className="absolute top-full mt-0 left-0 w-56 bg-white border border-gray-100 rounded-xl shadow-lg py-2 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all z-50 flex flex-col translate-y-2 group-hover:translate-y-0">
+                  <a href="#build" onClick={(e) => handleNavClick(e, 'build')} className="px-4 py-2.5 text-sm text-gray-700 hover:bg-purple-50 hover:text-[#5F4DED] transition-colors font-medium">Platform Overview</a>
+                  <a href="https://docs.arbitrum.io/stylus/stylus-gentle-introduction" target="_blank" rel="noopener noreferrer" className="px-4 py-2.5 text-sm text-gray-700 hover:bg-purple-50 hover:text-[#5F4DED] transition-colors font-medium flex justify-between items-center">
+                    Official Docs <ExternalLink className="w-3.5 h-3.5 opacity-50" />
+                  </a>
+                  <a href="https://github.com/OffchainLabs/stylus-sdk-rs/" target="_blank" rel="noopener noreferrer" className="px-4 py-2.5 text-sm text-gray-700 hover:bg-purple-50 hover:text-[#5F4DED] transition-colors font-medium flex justify-between items-center">
+                    Rust SDK <ExternalLink className="w-3.5 h-3.5 opacity-50" />
+                  </a>
+                  <div className="border-t border-gray-100 my-1 mx-2"></div>
+                  <a href="https://github.com/OffchainLabs/awesome-stylus" target="_blank" rel="noopener noreferrer" className="px-4 py-2 text-xs text-gray-500 hover:bg-purple-50 hover:text-[#5F4DED] transition-colors flex justify-between items-center">
+                    Awesome Stylus Tools <ExternalLink className="w-3 h-3 opacity-50" />
+                  </a>
+                </div>
+              </div>
+
+              {/* Learn Dropdown (New Builders) */}
+              <div className="relative group py-4">
+                <button className="flex items-center gap-1 text-gray-600 group-hover:text-[#5F4DED] transition-colors font-medium">
+                  Learn <ChevronDown className="w-4 h-4 group-hover:rotate-180 transition-transform duration-200" />
+                </button>
+                <div className="absolute top-full mt-0 left-0 w-64 bg-white border border-gray-100 rounded-xl shadow-lg py-2 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all z-50 flex flex-col translate-y-2 group-hover:translate-y-0">
+                  <a href="#get-started" onClick={(e) => handleNavClick(e, 'get-started')} className="px-4 py-2.5 text-sm text-gray-700 hover:bg-purple-50 hover:text-[#5F4DED] transition-colors font-medium">Getting Started Guide</a>
+                  <a href="#learn" onClick={(e) => handleNavClick(e, 'learn')} className="px-4 py-2.5 text-sm text-gray-700 hover:bg-purple-50 hover:text-[#5F4DED] transition-colors font-medium">Educational Materials</a>
+                  <a href="https://github.com/OffchainLabs/stylus-by-example" target="_blank" rel="noopener noreferrer" className="px-4 py-2.5 text-sm text-gray-700 hover:bg-purple-50 hover:text-[#5F4DED] transition-colors font-medium flex justify-between items-center">
+                    Stylus by Example <ExternalLink className="w-3.5 h-3.5 opacity-50" />
+                  </a>
+                  <div className="border-t border-gray-100 my-1 mx-2"></div>
+                  <a href="https://www.youtube.com/@Arbitrum/search?query=stylus%20saturdays" target="_blank" rel="noopener noreferrer" className="px-4 py-2 text-xs text-gray-500 hover:bg-purple-50 hover:text-[#5F4DED] transition-colors flex justify-between items-center">
+                    Watch Stylus Saturdays <ExternalLink className="w-3 h-3 opacity-50" />
+                  </a>
+                </div>
+              </div>
+
+              {/* Ecosystem Dropdown (Delegates/Investors/All) */}
+              <div className="relative group py-4">
+                <button
+                  onClick={() => { navigate('/ecosystem'); window.scrollTo(0, 0); }}
+                  className="flex items-center gap-1 text-gray-600 group-hover:text-[#5F4DED] transition-colors font-medium"
+                >
+                  Ecosystem <ChevronDown className="w-4 h-4 group-hover:rotate-180 transition-transform duration-200" />
+                </button>
+                <div className="absolute top-full mt-0 left-0 w-56 bg-white border border-gray-100 rounded-xl shadow-lg py-2 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all z-50 flex flex-col translate-y-2 group-hover:translate-y-0">
+                  <Link to="/ecosystem" onClick={() => window.scrollTo(0, 0)} className="px-4 py-2.5 text-sm text-gray-700 hover:bg-purple-50 hover:text-[#5F4DED] transition-colors font-medium">Explore Directory</Link>
+                  <a href="#use-cases" onClick={(e) => handleNavClick(e, 'use-cases')} className="px-4 py-2.5 text-sm text-gray-700 hover:bg-purple-50 hover:text-[#5F4DED] transition-colors font-medium">Project Spotlights</a>
+                  <Link to="/ecosystem/submit" onClick={() => window.scrollTo(0, 0)} className="px-4 py-2.5 text-sm text-gray-700 hover:bg-purple-50 hover:text-[#5F4DED] transition-colors font-medium flex justify-between items-center text-purple-600">
+                    Submit a Project <span className="text-[10px] font-bold bg-purple-100 px-1.5 py-0.5 rounded text-purple-600">NEW</span>
+                  </Link>
+                </div>
+              </div>
+
               <a
                 href="#community"
                 onClick={(e) => handleNavClick(e, 'community')}
-                className="text-gray-600 hover:text-[#5F4DED] transition-colors cursor-pointer"
+                className="text-gray-600 hover:text-[#5F4DED] transition-colors font-medium"
               >
                 Community
               </a>
@@ -196,6 +235,13 @@ export function Header({ onSearchClick }: HeaderProps) {
               >
                 Community
               </a>
+              <Link
+                to="/ecosystem"
+                onClick={() => { closeMobileMenu(); window.scrollTo(0, 0); }}
+                className="text-2xl text-gray-900 hover:text-[#5F4DED] transition-colors font-medium"
+              >
+                Ecosystem
+              </Link>
 
               <div className="pt-6 border-t border-gray-200">
                 <a

@@ -1,6 +1,8 @@
 import { useState, useEffect, useRef } from 'react';
-import { Search, X } from 'lucide-react';
+import { Search, X, ExternalLink, ArrowRight } from 'lucide-react';
+import { useNavigate } from 'react-router-dom';
 import { searchData, SearchItem } from '../data/searchData';
+import { ecosystemProjects } from '../data/ecosystemData';
 
 interface SearchModalProps {
     isOpen: boolean;
@@ -13,6 +15,7 @@ export function SearchModal({ isOpen, onClose }: SearchModalProps) {
     const [filteredResults, setFilteredResults] = useState<SearchItem[]>(searchData);
     const [selectedCategory, setSelectedCategory] = useState<string>('All');
     const inputRef = useRef<HTMLInputElement>(null);
+    const navigate = useNavigate();
 
     const categories = ['All', ...Array.from(new Set(searchData.map(item => item.category)))];
 
@@ -68,8 +71,14 @@ export function SearchModal({ isOpen, onClose }: SearchModalProps) {
                     break;
                 case 'Enter':
                     e.preventDefault();
-                    if (filteredResults[selectedIndex]) {
-                        window.open(filteredResults[selectedIndex].url, '_blank');
+                    const item = filteredResults[selectedIndex];
+                    if (item) {
+                        const ecoProj = ecosystemProjects.find(p => p.id === item.id);
+                        if (ecoProj) {
+                            navigate(`/ecosystem/${item.id}`);
+                        } else {
+                            window.open(item.url, '_blank');
+                        }
                         onClose();
                     }
                     break;
@@ -125,8 +134,8 @@ export function SearchModal({ isOpen, onClose }: SearchModalProps) {
                             key={category}
                             onClick={() => setSelectedCategory(category)}
                             className={`px-3 py-1 rounded-full text-sm font-medium whitespace-nowrap transition-all ${selectedCategory === category
-                                    ? 'bg-[#5F4DED] text-white'
-                                    : 'bg-gray-100 text-gray-600 hover:bg-gray-200'
+                                ? 'bg-[#5F4DED] text-white'
+                                : 'bg-gray-100 text-gray-600 hover:bg-gray-200'
                                 }`}
                         >
                             {category}
@@ -143,23 +152,40 @@ export function SearchModal({ isOpen, onClose }: SearchModalProps) {
                     ) : (
                         filteredResults.map((item, index) => {
                             const Icon = item.icon;
+                            const ecoProj = ecosystemProjects.find(p => p.id === item.id);
+
                             return (
-                                <a
+                                <div
                                     key={item.id}
-                                    href={item.url}
-                                    target="_blank"
-                                    rel="noopener noreferrer"
-                                    onClick={onClose}
-                                    className={`flex items-start gap-4 px-4 py-3 hover:bg-gray-50 transition-colors border-b border-gray-100 last:border-0 ${index === selectedIndex ? 'bg-gray-50' : ''
-                                        }`}
+                                    className={`flex items-start gap-4 px-4 py-3 hover:bg-gray-50 transition-colors border-b border-gray-100 last:border-0 ${index === selectedIndex ? 'bg-gray-50' : ''}`}
                                 >
                                     {/* Icon */}
-                                    <div className="w-10 h-10 rounded-lg bg-gradient-to-br from-[#5F4DED]/10 to-[#7B68EE]/10 border border-[#5F4DED]/20 flex items-center justify-center flex-shrink-0 mt-1">
+                                    <div
+                                        className="w-10 h-10 rounded-lg bg-gradient-to-br from-[#5F4DED]/10 to-[#7B68EE]/10 border border-[#5F4DED]/20 flex items-center justify-center flex-shrink-0 mt-1 cursor-pointer"
+                                        onClick={() => {
+                                            if (ecoProj) {
+                                                navigate(`/ecosystem/${item.id}`);
+                                            } else {
+                                                window.open(item.url, '_blank');
+                                            }
+                                            onClose();
+                                        }}
+                                    >
                                         <Icon className="w-5 h-5 text-[#5F4DED]" />
                                     </div>
 
                                     {/* Content */}
-                                    <div className="flex-1 min-w-0">
+                                    <div
+                                        className="flex-1 min-w-0 cursor-pointer"
+                                        onClick={() => {
+                                            if (ecoProj) {
+                                                navigate(`/ecosystem/${item.id}`);
+                                            } else {
+                                                window.open(item.url, '_blank');
+                                            }
+                                            onClose();
+                                        }}
+                                    >
                                         <h3 className="text-sm font-medium text-gray-900 mb-1">
                                             {item.name}
                                         </h3>
@@ -168,13 +194,39 @@ export function SearchModal({ isOpen, onClose }: SearchModalProps) {
                                         </p>
                                     </div>
 
-                                    {/* Tags */}
-                                    <div className="flex flex-wrap gap-1 items-start justify-end max-w-[200px]">
+                                    {/* Tags & Actions */}
+                                    <div className="flex flex-col items-end gap-2 shrink-0">
                                         <span className="text-xs px-2 py-0.5 rounded-md bg-[#FF1F8F]/10 text-[#FF1F8F] border border-[#FF1F8F]/20 whitespace-nowrap">
                                             {item.category}
                                         </span>
+                                        <div className="flex items-center gap-1.5 mt-0.5">
+                                            {ecoProj && (
+                                                <button
+                                                    onClick={(e) => {
+                                                        e.stopPropagation();
+                                                        navigate(`/ecosystem/${item.id}`);
+                                                        onClose();
+                                                    }}
+                                                    className="flex items-center gap-1.5 px-2.5 py-1.5 rounded-md bg-purple-50 text-[#5F4DED] text-xs font-semibold hover:bg-purple-100 transition-colors"
+                                                    title="View Ecosystem Page"
+                                                >
+                                                    Project Page <ArrowRight className="w-3.5 h-3.5" />
+                                                </button>
+                                            )}
+                                            <button
+                                                onClick={(e) => {
+                                                    e.stopPropagation();
+                                                    window.open(item.url, '_blank');
+                                                    onClose();
+                                                }}
+                                                className="flex items-center gap-1.5 px-2 py-1.5 rounded-md text-gray-500 hover:text-gray-700 hover:bg-gray-100 text-xs font-semibold transition-colors"
+                                                title="Open External Link"
+                                            >
+                                                Website <ExternalLink className="w-3.5 h-3.5" />
+                                            </button>
+                                        </div>
                                     </div>
-                                </a>
+                                </div>
                             );
                         })
                     )}

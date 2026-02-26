@@ -104,3 +104,31 @@
     @apply bg-background text-foreground;
   }
 }
+
+/* Custom Ecosystem Stats Marquee */
+.mask-edges {
+  -webkit-mask-image: linear-gradient(to right, transparent, black 10%, black 90%, transparent);
+  mask-image: linear-gradient(to right, transparent, black 10%, black 90%, transparent);
+}
+
+.animate-scroll {
+  animation: scroll 30s linear infinite;
+  /* Ensure width is calculated based on contents so it flows properly */
+  width: max-content;
+}
+
+@keyframes scroll {
+  0% {
+    transform: translateX(0);
+  }
+
+  100% {
+    /* Translate exactly half of the duplicated content width to create seamless loop */
+    transform: translateX(-50%);
+  }
+}
+
+/* Pause animation on hover */
+.hover\:pause:hover {
+  animation-play-state: paused;
+}

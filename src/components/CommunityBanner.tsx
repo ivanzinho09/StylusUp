@@ -1,4 +1,5 @@
 import { Users } from 'lucide-react';
+import { Link } from 'react-router-dom';
 
 export function CommunityBanner() {
     return (
@@ -25,12 +26,21 @@ export function CommunityBanner() {
                     </p>
 
                     <div className="flex flex-col sm:flex-row items-center justify-center gap-4 pt-4">
-                        <button className="px-8 py-3 bg-white text-[#5F4DED] font-semibold rounded-[8px] hover:bg-gray-100 transition-colors w-full sm:w-auto text-[15px]">
+                        <a
+                            href="https://github.com/OffchainLabs/awesome-stylus"
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="px-8 py-3 bg-white text-[#5F4DED] font-semibold rounded-[8px] hover:bg-gray-100 transition-colors w-full sm:w-auto text-[15px]"
+                        >
                             Contribute on GitHub
-                        </button>
-                        <button className="px-8 py-3 bg-[#5F4DED] border border-white text-white font-semibold rounded-[8px] hover:bg-[#4C3DCD] transition-colors w-full sm:w-auto backdrop-blur-sm text-[15px]">
+                        </a>
+                        <Link
+                            to="/ecosystem/submit"
+                            onClick={() => window.scrollTo(0, 0)}
+                            className="px-8 py-3 bg-[#5F4DED] border border-white text-white font-semibold rounded-[8px] hover:bg-[#4C3DCD] transition-colors w-full sm:w-auto backdrop-blur-sm text-[15px] inline-block"
+                        >
                             Submit your project
-                        </button>
+                        </Link>
                     </div>
                 </div>
 
