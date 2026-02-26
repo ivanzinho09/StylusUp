@@ -74,12 +74,12 @@ export function Footer() {
             <h4 className="text-gray-900 font-semibold mb-4">Ecosystem</h4>
             <ul className="space-y-3 text-sm">
               <li>
-                <Link to="/ecosystem" onClick={() => window.scrollTo(0, 0)} className="text-gray-600 hover:text-[#5F4DED] transition-colors">
+                <Link to="/ecosystem" onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })} className="text-gray-600 hover:text-[#5F4DED] transition-colors">
                   Explore Directory
                 </Link>
               </li>
               <li>
-                <Link to="/ecosystem/submit" onClick={() => window.scrollTo(0, 0)} className="text-gray-600 hover:text-[#5F4DED] transition-colors">
+                <Link to="/ecosystem/submit" onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })} className="text-gray-600 hover:text-[#5F4DED] transition-colors">
                   Submit a Project
                 </Link>
               </li>

@@ -68,6 +68,7 @@ export function Header({ onSearchClick }: HeaderProps) {
           <div className="flex items-center justify-between h-16">
             <Link
               to="/"
+              onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
               className="flex items-center gap-2 cursor-pointer"
             >
               <img src="/logo.svg" alt="StylusUp Logo" className="h-10 w-10" />
@@ -121,15 +122,15 @@ export function Header({ onSearchClick }: HeaderProps) {
               {/* Ecosystem Dropdown (Delegates/Investors/All) */}
               <div className="relative group py-4">
                 <button
-                  onClick={() => { navigate('/ecosystem'); window.scrollTo(0, 0); }}
+                  onClick={() => { navigate('/ecosystem'); window.scrollTo({ top: 0, behavior: 'smooth' }); }}
                   className="flex items-center gap-1 text-gray-600 group-hover:text-[#5F4DED] transition-colors font-medium"
                 >
                   Ecosystem <ChevronDown className="w-4 h-4 group-hover:rotate-180 transition-transform duration-200" />
                 </button>
                 <div className="absolute top-full mt-0 left-0 w-56 bg-white border border-gray-100 rounded-xl shadow-lg py-2 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all z-50 flex flex-col translate-y-2 group-hover:translate-y-0">
-                  <Link to="/ecosystem" onClick={() => window.scrollTo(0, 0)} className="px-4 py-2.5 text-sm text-gray-700 hover:bg-purple-50 hover:text-[#5F4DED] transition-colors font-medium">Explore Directory</Link>
+                  <Link to="/ecosystem" onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })} className="px-4 py-2.5 text-sm text-gray-700 hover:bg-purple-50 hover:text-[#5F4DED] transition-colors font-medium">Explore Directory</Link>
                   <a href="#use-cases" onClick={(e) => handleNavClick(e, 'use-cases')} className="px-4 py-2.5 text-sm text-gray-700 hover:bg-purple-50 hover:text-[#5F4DED] transition-colors font-medium">Project Spotlights</a>
-                  <Link to="/ecosystem/submit" onClick={() => window.scrollTo(0, 0)} className="px-4 py-2.5 text-sm text-gray-700 hover:bg-purple-50 hover:text-[#5F4DED] transition-colors font-medium flex justify-between items-center text-purple-600">
+                  <Link to="/ecosystem/submit" onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })} className="px-4 py-2.5 text-sm text-gray-700 hover:bg-purple-50 hover:text-[#5F4DED] transition-colors font-medium flex justify-between items-center text-purple-600">
                     Submit a Project <span className="text-[10px] font-bold bg-purple-100 px-1.5 py-0.5 rounded text-purple-600">NEW</span>
                   </Link>
                 </div>
@@ -160,14 +161,23 @@ export function Header({ onSearchClick }: HeaderProps) {
               </a>
             </nav>
 
-            {/* Mobile Menu Button */}
-            <button
-              onClick={toggleMobileMenu}
-              className="md:hidden p-2 text-gray-900 hover:text-[#5F4DED] transition-colors"
-              aria-label="Toggle menu"
-            >
-              <Menu className="w-6 h-6" />
-            </button>
+            {/* Mobile Actions */}
+            <div className="md:hidden flex items-center gap-2">
+              <button
+                onClick={onSearchClick}
+                className="p-2 text-gray-600 hover:text-[#5F4DED] transition-colors"
+                aria-label="Search"
+              >
+                <Search className="w-6 h-6" />
+              </button>
+              <button
+                onClick={toggleMobileMenu}
+                className="p-2 text-gray-900 hover:text-[#5F4DED] transition-colors"
+                aria-label="Toggle menu"
+              >
+                <Menu className="w-6 h-6" />
+              </button>
+            </div>
           </div>
         </div>
       </header>
@@ -182,13 +192,17 @@ export function Header({ onSearchClick }: HeaderProps) {
           <div className="relative h-full flex flex-col">
             {/* Header with close button */}
             <div className="flex items-center justify-between p-6 border-b border-gray-200">
-              <div className="flex items-center gap-2">
+              <Link
+                to="/"
+                onClick={() => { closeMobileMenu(); window.scrollTo(0, 0); }}
+                className="flex items-center gap-2 cursor-pointer"
+              >
                 <img src="/logo.svg" alt="StylusUp Logo" className="h-10 w-10" />
                 <span style={{ fontFamily: "'Unica77 LL', sans-serif" }} className="text-[28px] font-normal tracking-tight leading-none mt-0.5 ml-1">
                   <span className="text-[#5F4DED]">Stylus</span>
                   <span className="text-[#0F172A] italic">Up</span>
                 </span>
-              </div>
+              </Link>
               <button
                 onClick={closeMobileMenu}
                 className="p-2 text-gray-900 hover:text-[#5F4DED] transition-colors"
@@ -237,7 +251,7 @@ export function Header({ onSearchClick }: HeaderProps) {
               </a>
               <Link
                 to="/ecosystem"
-                onClick={() => { closeMobileMenu(); window.scrollTo(0, 0); }}
+                onClick={() => { closeMobileMenu(); window.scrollTo({ top: 0, behavior: 'smooth' }); }}
                 className="text-2xl text-gray-900 hover:text-[#5F4DED] transition-colors font-medium"
               >
                 Ecosystem
