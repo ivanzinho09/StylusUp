@@ -1,7 +1,8 @@
 import { useState, useMemo } from 'react';
 import { Link } from 'react-router-dom';
 import { ArrowLeft, LayoutGrid, List } from 'lucide-react';
-import { ecosystemProjects } from '../data/ecosystemData';
+import { EcosystemProject } from '../data/ecosystemData';
+import { useProjects } from '../hooks/useProjects';
 import { FilterSidebar, FilterState } from './FilterSidebar';
 import { ProjectCard } from './ProjectCard';
 import { SubmitProjectCTA } from './SubmitProjectCTA';
@@ -15,7 +16,7 @@ const DEFAULT_FILTERS: FilterState = {
     status: 'all',
 };
 
-function applyFilters(projects: typeof ecosystemProjects, f: FilterState) {
+function applyFilters(projects: EcosystemProject[], f: FilterState) {
     return projects.filter((p) => {
         if (f.keyword) {
             const q = f.keyword.toLowerCase();
@@ -40,8 +41,9 @@ function applyFilters(projects: typeof ecosystemProjects, f: FilterState) {
 export function EcosystemExplorer() {
     const [filters, setFilters] = useState<FilterState>(DEFAULT_FILTERS);
     const [view, setView] = useState<'grid' | 'list'>('grid');
+    const { projects, loading, error } = useProjects();
 
-    const filtered = useMemo(() => applyFilters(ecosystemProjects, filters), [filters]);
+    const filtered = useMemo(() => applyFilters(projects, filters), [projects, filters]);
 
     return (
         <div className="min-h-screen bg-[#F8F7FF]">
@@ -98,7 +100,7 @@ export function EcosystemExplorer() {
                             <FilterSidebar
                                 filters={filters}
                                 onFilterChange={setFilters}
-                                projects={ecosystemProjects}
+                                projects={projects}
                             />
                         </div>
                     </div>
@@ -108,20 +110,24 @@ export function EcosystemExplorer() {
                         {/* Result bar */}
                         <div className="flex items-center justify-between mb-6">
                             <p className="text-sm text-gray-500">
-                                Displaying{' '}
-                                <span className="font-semibold text-gray-700">{filtered.length}</span>{' '}
-                                of{' '}
-                                <span className="font-semibold text-gray-700">
-                                    {ecosystemProjects.length}
-                                </span>{' '}
-                                results
+                                {loading ? 'Loading projects…' : error ? (
+                                    <span className="text-red-500">{error}</span>
+                                ) : (
+                                    <>
+                                        Displaying{' '}
+                                        <span className="font-semibold text-gray-700">{filtered.length}</span>{' '}
+                                        of{' '}
+                                        <span className="font-semibold text-gray-700">{projects.length}</span>{' '}
+                                        results
+                                    </>
+                                )}
                             </p>
                             <div className="flex items-center gap-1 bg-white border border-gray-200 rounded-lg p-0.5">
                                 <button
                                     onClick={() => setView('grid')}
                                     className={`p-1.5 rounded-md transition-colors ${view === 'grid'
-                                            ? 'bg-[#5F4DED] text-white'
-                                            : 'text-gray-400 hover:text-gray-600'
+                                        ? 'bg-[#5F4DED] text-white'
+                                        : 'text-gray-400 hover:text-gray-600'
                                         }`}
                                     title="Grid view"
                                 >
@@ -130,8 +136,8 @@ export function EcosystemExplorer() {
                                 <button
                                     onClick={() => setView('list')}
                                     className={`p-1.5 rounded-md transition-colors ${view === 'list'
-                                            ? 'bg-[#5F4DED] text-white'
-                                            : 'text-gray-400 hover:text-gray-600'
+                                        ? 'bg-[#5F4DED] text-white'
+                                        : 'text-gray-400 hover:text-gray-600'
                                         }`}
                                     title="List view"
                                 >

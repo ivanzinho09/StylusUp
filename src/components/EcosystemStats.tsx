@@ -1,5 +1,5 @@
 import { Info } from 'lucide-react';
-import { ecosystemProjects } from '../data/ecosystemData';
+import { useProjects } from '../hooks/useProjects';
 
 // Assuming we have these logos or will add them later. 
 // For now, we will use text/placeholders that look clean if logos are missing.
@@ -13,7 +13,8 @@ const PROMINENT_PROJECTS = [
 ];
 
 export function EcosystemStats() {
-    const totalProjects = ecosystemProjects.length;
+    const { projects } = useProjects();
+    const totalProjects = projects.length;
 
     return (
         <div className="w-full">

@@ -1,6 +1,6 @@
 import { Link, useNavigate } from 'react-router-dom';
 import { ArrowLeft, ExternalLink, Github, Twitter, MessageCircle, Send } from 'lucide-react';
-import { ecosystemProjects } from '../data/ecosystemData';
+import { useProjects } from '../hooks/useProjects';
 import { SubmitProjectCTA } from './SubmitProjectCTA';
 import { Footer } from './Footer';
 
@@ -28,7 +28,16 @@ function LogoPlaceholder({ name }: { name: string }) {
 
 export function ProjectDetailPage({ projectId }: ProjectDetailPageProps) {
     const navigate = useNavigate();
-    const project = ecosystemProjects.find((p) => p.id === projectId);
+    const { projects, loading } = useProjects();
+    const project = projects.find((p) => p.id === projectId);
+
+    if (loading) {
+        return (
+            <div className="min-h-screen bg-[#F8F7FF] flex items-center justify-center">
+                <div className="w-10 h-10 rounded-full border-4 border-[#5F4DED] border-t-transparent animate-spin" />
+            </div>
+        );
+    }
 
     if (!project) {
         return (

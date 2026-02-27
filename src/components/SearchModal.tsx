@@ -2,7 +2,7 @@ import { useState, useEffect, useRef } from 'react';
 import { Search, X, ExternalLink, ArrowRight } from 'lucide-react';
 import { useNavigate } from 'react-router-dom';
 import { searchData, SearchItem } from '../data/searchData';
-import { ecosystemProjects } from '../data/ecosystemData';
+import { useProjects } from '../hooks/useProjects';
 
 interface SearchModalProps {
     isOpen: boolean;
@@ -16,6 +16,7 @@ export function SearchModal({ isOpen, onClose }: SearchModalProps) {
     const [selectedCategory, setSelectedCategory] = useState<string>('All');
     const inputRef = useRef<HTMLInputElement>(null);
     const navigate = useNavigate();
+    const { projects: ecosystemProjects } = useProjects();
 
     const categories = ['All', ...Array.from(new Set(searchData.map(item => item.category)))];
 
