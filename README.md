@@ -3,8 +3,8 @@
   <h1>StylusUp</h1>
   <p><strong>The community hub for developers building on Arbitrum Stylus.</strong></p>
   <p>
-    <a href="https://stylusup.xyz">Live Site</a> ·
-    <a href="https://stylusup.xyz/ecosystem">Ecosystem Directory</a> ·
+    <a href="https://stylusup.sh">Live Site</a> ·
+    <a href="https://stylusup.sh/ecosystem">Ecosystem Directory</a> ·
     <a href="HACKING.md">Contribute a Project</a>
   </p>
   <br />
@@ -123,5 +123,5 @@ MIT — see [LICENSE](LICENSE) for details. Built and maintained by the Stylus c
 ---
 
 <div align="center">
-  <sub>Built with ❤️ for the Stylus ecosystem · <a href="https://stylusup.xyz">stylusup.xyz</a></sub>
+  <sub>Built with ❤️ for the Stylus ecosystem · <a href="https://stylusup.sh">stylusup.sh</a></sub>
 </div>
